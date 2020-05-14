@@ -1,6 +1,7 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
+  <v-app id="app">
+    <core-view />
+    <!-- <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -35,22 +36,22 @@
 
     <v-content>
       <HelloWorld />
-    </v-content>
+    </v-content> -->
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-
 export default {
   name: "App",
 
   components: {
-    HelloWorld
-  },
-
-  data: () => ({
-    //
-  })
+    CoreView: () => import('@/components/core/View'),
+  }
 };
 </script>
+
+<style scoped>
+#id {
+  min-height: 100%;
+}
+</style>
