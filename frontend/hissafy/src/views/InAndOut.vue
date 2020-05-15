@@ -12,10 +12,10 @@
           <v-col
             cols="6"
             sm="6"
-            style="height:100%"
+            style="height:100%;"
             class="pr-2 pb-2"
           >
-            <v-img src="../assets/recognition.jpg" aspect-ratio="1.7"></v-img>
+            <v-img src="../assets/recognition.jpg" aspect-ratio="1.7" height="100%"></v-img>
           </v-col>
           <!--왼쪽 끝-->
           <!--오른쪽 시작-->
@@ -80,14 +80,14 @@
                 class="pt-2 pb-2"
               >
                 <v-card
-                  v-for="item in 5"
+                  v-for="item in 10"
                   :key="item"
                   class="pa-2 text-center"
                   outlined
                   tile
                   style="height:50px; width:100%;"
                 >
-                  리스트 업
+                  출결교육생 리스트 업
                 </v-card>
               </v-col>
             </v-row>
@@ -109,7 +109,7 @@
               style="height:100%; width:100%; background-color:#24282B;"
             >
               <marquee scrolldelay="10" style="font-size: 50px;">
-                변화를 위해 가장 필요한 자질은 지치지 않는 것이다.
+                오늘은 다들 피곤해 보이는 날이네요. 변화를 위해 가장 필요한 자질은 지치지 않는 것입니다. 오늘도 힘내봐요.
               </marquee>
             </v-card>
           </v-col>
