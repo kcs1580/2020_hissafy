@@ -21,12 +21,12 @@ export default {
 
 <style>
 #app #content {
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
 }
 nav {
   width: 100%;
   height: 120px;
-  background: #ccc;
+  border-bottom: 1px solid #ccc;
 }
 </style>
