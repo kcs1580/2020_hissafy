@@ -26,7 +26,6 @@ export default {
 }
 nav {
   width: 100%;
-  height: 120px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px #ccc solid;
 }
 </style>
