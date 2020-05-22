@@ -1,11 +1,12 @@
 <template>
   <div class="nav">
-    <div class="content">
-      <div class="header">
+    <div class="header">
+      <div class="content">
         <ul class="home">
           <img src="../assets/header-logo.jpg" />
         </ul>
-        <ul class="menu">
+
+        <ul class="menu" @mouseover="active=true" @mouseout="active=false">
           <li>
             <a>교육생관리</a>
           </li>
@@ -19,6 +20,7 @@
           </li>
           <!-- //공지사항관리 -->
         </ul>
+
         <ul class="profile">
           <a href>
             <img src="../assets/user.svg" alt="프로필사진" />
@@ -28,21 +30,26 @@
         </ul>
         <!-- //profile -->
       </div>
-
-      <div class="slid-menu">
-        <ul>
-          <li>교육생보기</li>
-        </ul>
-        <ul>
-          <li>입 &middot; 퇴실 조회</li>
-          <li>지각 &middot; 조퇴 조회</li>
-        </ul>
-        <ul>
-          <li>공지사항관리</li>
-        </ul>
-      </div>
     </div>
-    <!-- //content -->
+    <!-- //header -->
+    <transition name="slide-down">
+      <div class="slid-menu" v-show="active" @mouseover="active=true" @mouseout="active=false">
+        <div class="content">
+          <ul>
+            <li>교육생보기</li>
+          </ul>
+          <ul>
+            <li>입 &middot; 퇴실 조회</li>
+            <li>지각 &middot; 조퇴 조회</li>
+          </ul>
+          <ul>
+            <li>공지사항관리</li>
+          </ul>
+        </div>
+        <!-- //content -->
+      </div>
+      <!-- //slid-menu -->
+    </transition>
   </div>
   <!-- //nav -->
 </template>
@@ -51,33 +58,37 @@
 export default {
   data() {
     return {
-      active: false // dropmenu toggle
+      active: false // slid-menu toggle
     };
   },
-  methods: {
-    dropmenu() {
-      this.active = !this.active;
-    }
-  }
+  methods: {}
 };
 </script>
 
 <style>
+.slide-down-enter,
+.slide-down-leave-active {
+  opacity: 1;
+  transform: scaleY(0);
+}
+
 .nav {
   width: 100%;
   position: relative;
   align-content: center;
   overflow: hidden;
 }
-
-.nav .content {
-  margin-left: 10%;
-  /* height: 100px; */
-  width: 80%;
-  /* position: relative;
-  overflow: hidden; */
+.nav .header {
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  overflow: hidden;
 }
-.content .head {
+
+.header .content {
+  margin-left: 10%;
+  width: 80%;
   position: relative;
   overflow: hidden;
 }
@@ -99,6 +110,7 @@ ul.home img {
   overflow: hidden;
   padding-left: 0;
 }
+
 .menu a {
   display: block;
   float: left;
@@ -130,26 +142,34 @@ ul.home img {
   margin-right: 5px;
   vertical-align: middle;
 }
-.content .slid-menu {
-  /* margin-left: 20%; */
-  width: 100%;
-  margin: 0 auto;
+
+.slid-menu {
+  transform-origin: top;
+  transition: transform 0.4s ease-in-out;
+  width: 60%;
+  margin-left: 20%;
+  padding-top: 15px;
+  padding-bottom: 15px;
   text-align: center;
   overflow: hidden;
   position: relative;
+  border: 1px solid #ccc;
+  border-top: 1px solid#fff;
 }
-.content .slid-menu ul {
+.slid-menu .content {
+  width: 80%;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+}
+.slid-menu .content ul {
   float: left;
   width: 33.3%;
+  padding-left: 0;
 }
-/* .menu ul {
-  display: none;
-  height: 190px;
-  padding-top: 24px;
-  margin-top: 0px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-} */
+.slid-menu .content ul li:hover {
+  color: #3395f4 !important;
+}
 
 ul,
 li {
