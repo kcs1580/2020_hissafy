@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import InAndOut from "../views/InAndOut.vue";
+import OneMode from "../views/OneMode.vue";
 
 Vue.use(VueRouter);
 
@@ -8,23 +9,19 @@ const routes = [
   {
     path: "/",
     name: "InAndOut",
-    component: InAndOut
-  }
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
+    component: InAndOut,
+  },
+  {
+    path: "/OneMode",
+    name: "OneMode",
+    component: OneMode,
+  },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;
