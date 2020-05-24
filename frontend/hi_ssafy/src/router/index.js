@@ -2,7 +2,6 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import InAndOut from "../views/InAndOut.vue";
 import OneMode from "../views/OneMode.vue";
-import ex from "../views/ex.vue";
 
 Vue.use(VueRouter);
 
