@@ -2,9 +2,11 @@
   <div class="nav">
     <div class="header">
       <div class="content">
-        <ul class="home">
-          <img src="../assets/header-logo.jpg" />
-        </ul>
+        <router-link to="/">
+          <ul class="home">
+            <img src="../assets/header-logo.jpg" />
+          </ul>
+        </router-link>
 
         <ul class="menu" @mouseover="active=true" @mouseout="active=false">
           <li>
@@ -36,7 +38,9 @@
       <div class="slid-menu" v-show="active" @mouseover="active=true" @mouseout="active=false">
         <div class="content">
           <ul>
-            <li>교육생보기</li>
+            <li>
+              <router-link to="studentManagement">교육생보기</router-link>
+            </li>
           </ul>
           <ul>
             <li>입 &middot; 퇴실 조회</li>
@@ -145,7 +149,7 @@ ul.home img {
 
 .slid-menu {
   transform-origin: top;
-  transition: transform 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
   width: 60%;
   margin-left: 20%;
   padding-top: 15px;
@@ -155,6 +159,7 @@ ul.home img {
   position: relative;
   border: 1px solid #ccc;
   border-top: 1px solid#fff;
+  background: #fff;
 }
 .slid-menu .content {
   width: 80%;

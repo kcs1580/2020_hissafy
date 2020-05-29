@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h3>안녕하세요</h3>
+  <div id="notice">
+    <button id="insert">공자사항 추가</button>
   </div>
 </template>
 
