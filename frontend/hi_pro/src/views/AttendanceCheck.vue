@@ -91,8 +91,14 @@ export default {
       ];
     },
     changeDate() {
-      this.$refs.menu.save(this.date);
       // 날짜별 요청
+      var today = new Date().toISOString().substr(0, 10);
+      if (this.date <= today) {
+        this.$refs.menu.save(this.date);
+      } else {
+        alert("이전 날짜를 선택해주세요");
+        this.date = today;
+      }
     }
   }
 };
