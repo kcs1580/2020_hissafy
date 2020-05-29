@@ -1,102 +1,121 @@
 
 <template>
-  <div>
-    <v-btn color="primary" dark @click.native.stop="dialog = true">등록</v-btn>
-    <v-dialog v-model="dialog" max-width="500px">
-      <v-card>
-        <v-card-title>
-          <span class="headline">{{ formTitle }}</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container grid-list-md>
-            <v-layout wrap>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.id" label="학번"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.group" label="기수"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.area" label="지역"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.class" label="반"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.name" label="이름"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.state" label="재학"></v-text-field>
-              </v-flex>
-              <v-flex xs12 sm6 md4>
-                <v-text-field v-model="editedItem.photo" label="사진"></v-text-field>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click.native="close">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click.native="save">Save</v-btn>
-        </v-card-actions>
-      </v-card>
-      <!-- </template> -->
-    </v-dialog>
+  <v-data-table :headers="headers" :items="students" sort-by="id" class="elevation-1">
+    <template v-slot:top>
+      <v-toolbar flat color="white">
+        <v-spacer></v-spacer>
+        <v-dialog v-model="dialog" max-width="500px">
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" dark class="mb-2 mx-2" v-show="edit" @click="editCancel">취소</v-btn>
+            <v-btn color="primary" dark class="mb-2" @click="editMode">{{edit_button}}</v-btn>
+            <v-btn color="primary" dark class="mb-2 mx-2" v-show="edit" v-on="on">추가</v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="headline">{{ formTitle }}</span>
+            </v-card-title>
 
-    <v-data-table :headers="headers" :items="desserts" class="elevation-1">
-      <template slot="items" slot-scope="props">
-        <td>{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.calories }}</td>
-        <td class="text-xs-right">{{ props.item.fat }}</td>
-        <td class="text-xs-right">{{ props.item.carbs }}</td>
-        <td class="text-xs-right">{{ props.item.protein }}</td>
-        <td class="justify-center layout px-0">
-          <v-btn icon class="mx-0" @click="editItem(props.item)">
-            <v-icon color="teal">edit</v-icon>
-          </v-btn>
-          <v-btn icon class="mx-0" @click="deleteItem(props.item)">
-            <v-icon color="pink">delete</v-icon>
-          </v-btn>
-        </td>
-      </template>
-    </v-data-table>
-  </div>
+            <v-card-text>
+              <v-container>
+                <v-form ref="form" v-model="valid" lazy-validation>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field v-model="editedItem.id" label="학번" :rules="id_rules"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field type="number" v-model="editedItem.group_num" label="기수"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-select v-model="editedItem.area" :items="area_options" outlined label="지역"></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field v-model="editedItem.class" type="number" label="반"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field v-model="editedItem.name" label="이름" :rules="rules"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-select
+                        v-model="editedItem.state"
+                        :items="state_options"
+                        outlined
+                        label="재학/퇴소"
+                      ></v-select>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field v-model="editedItem.face_id" label="face_id"></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-form>
+              </v-container>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="save" :disabled="!valid">Save</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+    </template>
+    <template v-slot:item.actions="{ item }">
+      <v-icon small class="mr-2" @click="editItem(item)">mdi-pencil</v-icon>
+      <v-icon small @click="deleteItem(item)">mdi-delete</v-icon>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
 export default {
+  components: {},
   data() {
     return {
       dialog: false,
+      edit: false,
+      edit_button: "수정하기",
+      state_options: ["재학", "퇴소"],
+      area_options: ["광주", "서울", "대전", "구미"],
+      valid: true,
+      rules: [v => !!v || "이름을 입력해주세요"],
+      id_rules: [
+        v => !!v || "학번을 입력해주세요",
+        v => /[\d]$/.test(v) || "숫자만 입력 가능합니다."
+      ],
       //학번 기수 지역 반 이름 재학/퇴소 사진
       headers: [
         {
           text: "학번",
           align: "left",
-          value: "name"
+          value: "id"
         },
-        { text: "기수", value: "calories" },
-        { text: "지역", value: "fat" },
-        { text: "반", value: "carbs" },
-        { text: "이름", value: "protein" },
-        { text: "재학/퇴소", value: "name" },
-        { text: "사진", value: "name" }
+        { text: "기수", value: "group_num" },
+        { text: "지역", value: "area" },
+        { text: "반", value: "class" },
+        { text: "이름", value: "name" },
+        { text: "재학/퇴소", value: "state" },
+        { text: "사진", value: "face_id" }
+        // { text: "Actions", value: "actions", sortable: false }
       ],
-      desserts: [],
+      students: [],
       editedIndex: -1,
       editedItem: {
+        id: "",
+        group_num: 2,
+        area: "서울",
+        class: 1,
         name: "",
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0
+        state: "재학",
+        face_id: ""
       },
       defaultItem: {
+        id: "",
+        group_num: "",
+        area: "",
+        class: "",
         name: "",
-        calories: 0,
-        fat: 0,
-        carbs: 0,
-        protein: 0
+        state: "재학",
+        face_id: ""
       }
     };
   },
@@ -119,90 +138,84 @@ export default {
 
   methods: {
     initialize() {
-      this.desserts = [
+      this.students = [
         {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0
+          id: "0211062",
+          group_num: 2,
+          area: "광주",
+          class: 1,
+          name: "이하연",
+          state: "재학",
+          face_id: "1111"
         },
         {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3
+          id: "0211064",
+          group_num: 2,
+          area: "광주",
+          class: 1,
+          name: "문지환",
+          state: "재학",
+          face_id: "888"
         },
         {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0
+          id: "0211063",
+          group_num: 2,
+          area: "광주",
+          class: 1,
+          name: "김창수",
+          state: "재학",
+          face_id: "5555"
         },
         {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3
+          id: "0211065",
+          group_num: 2,
+          area: "광주",
+          class: 1,
+          name: "방준영",
+          state: "재학",
+          face_id: "333"
         },
         {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9
-        },
-        {
-          name: "Jelly bean",
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0
-        },
-        {
-          name: "Lollipop",
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0
-        },
-        {
-          name: "Honeycomb",
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5
-        },
-        {
-          name: "Donut",
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9
-        },
-        {
-          name: "KitKat",
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7
+          id: "0211066",
+          group_num: 2,
+          area: "광주",
+          class: 1,
+          name: "서현준",
+          state: "재학",
+          face_id: "222"
         }
       ];
     },
-
+    //저장하기
+    editMode() {
+      this.editCancel();
+      //aixos 추가
+    },
+    //취소
+    editCancel() {
+      if (this.edit === false) {
+        this.headers.push({
+          text: "Actions",
+          value: "actions",
+          sortable: false
+        });
+        this.edit_button = "저장하기";
+        this.edit = true;
+      } else {
+        this.edit_button = "수정하기";
+        this.headers.splice(7, 1);
+        this.edit = false;
+      }
+    },
     editItem(item) {
-      this.editedIndex = this.desserts.indexOf(item);
+      this.editedIndex = this.students.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
-      const index = this.desserts.indexOf(item);
-      confirm("Are you sure you want to delete this item?") &&
-        this.desserts.splice(index, 1);
+      const index = this.students.indexOf(item);
+      confirm("정말 삭제하시겠습니까?") && this.students.splice(index, 1);
     },
 
     close() {
@@ -214,12 +227,15 @@ export default {
     },
 
     save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem);
-      } else {
-        this.desserts.push(this.editedItem);
+      console.log(this.valid);
+      if (this.$refs.form.validate()) {
+        if (this.editedIndex > -1) {
+          Object.assign(this.students[this.editedIndex], this.editedItem);
+        } else {
+          this.students.push(this.editedItem);
+        }
+        this.close();
       }
-      this.close();
     }
   }
 };
