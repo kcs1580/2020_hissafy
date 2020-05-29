@@ -122,7 +122,7 @@ export default {
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "학생 등록" : "Edit Item";
+      return this.editedIndex === -1 ? "교육생 등록" : "교육생 수정";
     }
   },
 
