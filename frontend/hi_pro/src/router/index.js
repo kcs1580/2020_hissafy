@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-
+import StudentManagement from "../views/StudentManagement"
+import Home from"../views/Home"
 Vue.use(VueRouter);
 
 // const rejectAuthUser =(to,from,next)=>{
@@ -14,6 +15,16 @@ Vue.use(VueRouter);
 
 const routes = [
 
+  {
+    path: "/",
+    name: "Home",
+    component: Home
+  },
+  {
+    path: "/studentManagement",
+    name: "StudentManagement",
+    component: StudentManagement
+  }
   // {
   //   path: "/about",
   //   name: "About",

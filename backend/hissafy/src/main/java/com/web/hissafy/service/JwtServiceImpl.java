@@ -50,7 +50,7 @@ return jwt;
 	public boolean validationToken(String jwt) {
 		if(jwt !=null) {
 			String user_key = this.getUserId(jwt);
-			String user_id = pSer.proInfo(this.getUserName(jwt)).getUser_id();
+			String user_id = pSer.proInfo(this.getUserId(jwt)).getUser_id();
 			if(user_key.equals(user_id)) {
 				return true; 
 			}else {
@@ -67,15 +67,29 @@ return jwt;
 
 	@Override
 	public String getUserId(String jwt) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return Jwts.parser()
+					.setSigningKey(KEY)
+					.parseClaimsJws(jwt)
+					.getBody()
+					.getSubject();
+		}catch (Exception e) {
+			return null;
+		}
+		
 	}
 
-	@Override
-	public String getUserName(String jwt) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public String getUserName(String jwt) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public String getUserLocation(String jwt) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 
 }
