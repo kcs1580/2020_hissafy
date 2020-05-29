@@ -39,11 +39,13 @@
         <div class="content">
           <ul>
             <li>
-              <router-link to="studentManagement">교육생보기</router-link>
+              <router-link to="studentManagement">교육생관리</router-link>
             </li>
           </ul>
           <ul>
-            <li>입 &middot; 퇴실 조회</li>
+            <li>
+              <router-link to="attendanceCheck">입 &middot; 퇴실 조회</router-link>
+            </li>
             <li>지각 &middot; 조퇴 조회</li>
           </ul>
           <ul>
