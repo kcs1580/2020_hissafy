@@ -11,44 +11,66 @@
               <span class="headline">외출신청</span>
             </v-card-title>
             <v-card-text>
-              <v-container>
+              <div>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field label="Legal first name*" required></v-text-field>
+                  <v-col cols="12">
+                    <header>분류</header>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      label="Legal middle name"
-                      hint="example of helper text only on focus"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      label="Legal last name*"
-                      hint="example of persistent helper text"
-                      persistent-hint
-                      required
-                    ></v-text-field>
+                  <v-radio-group v-model="sort" row>
+                    <v-radio label="병원" value="병원"></v-radio>
+                    <v-radio label="취업" value="취업"></v-radio>
+                    <v-radio label="기타" value="기타"></v-radio>
+                  </v-radio-group>
+                  <v-col cols="12">
+                    <header>사유</header>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field label="Email*" required></v-text-field>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-text-field label="Password*" type="password" required></v-text-field>
+                    <v-textarea solo name="input-7-4" label="사유를 입력하세요"></v-textarea>
                   </v-col>
                   <v-col cols="12" sm="6">
-                    <v-select :items="['0-17', '18-29', '30-54', '54+']" label="Age*" required></v-select>
+                    <header>외출시간</header>
                   </v-col>
                   <v-col cols="12" sm="6">
-                    <v-autocomplete
-                      :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                      label="Interests"
-                      multiple
-                    ></v-autocomplete>
+                    <header>복귀시간</header>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-dialog
+                      ref="dialog"
+                      v-model="modal2"
+                      :return-value.sync="time"
+                      persistent
+                      width="290px"
+                    >
+                      <template v-slot:activator="{ on }">
+                        <v-text-field v-model="outtime" label="시간을 선택하세요" readonly v-on="on"></v-text-field>
+                      </template>
+                      <v-time-picker v-if="modal2" v-model="time" full-width>
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog.save(time)">OK</v-btn>
+                      </v-time-picker>
+                    </v-dialog>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-dialog
+                      ref="dialog"
+                      v-model="modal2"
+                      :return-value.sync="time"
+                      persistent
+                      width="290px"
+                    >
+                      <template v-slot:activator="{ on }">
+                        <v-text-field v-model="intime" label="시간을 선택하세요" readonly v-on="on"></v-text-field>
+                      </template>
+                      <v-time-picker v-if="modal2" v-model="time" full-width>
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog.save(time)">OK</v-btn>
+                      </v-time-picker>
+                    </v-dialog>
                   </v-col>
                 </v-row>
-              </v-container>
-              <small>*indicates required field</small>
+              </div>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -68,44 +90,46 @@
               <span class="headline">조퇴신청</span>
             </v-card-title>
             <v-card-text>
-              <v-container>
+              <div>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field label="Legal first name*" required></v-text-field>
+                  <v-col cols="12">
+                    <header>분류</header>
                   </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      label="Legal middle name"
-                      hint="example of helper text only on focus"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col cols="12" sm="6" md="4">
-                    <v-text-field
-                      label="Legal last name*"
-                      hint="example of persistent helper text"
-                      persistent-hint
-                      required
-                    ></v-text-field>
+                  <v-radio-group v-model="sort" row>
+                    <v-radio label="병원" value="병원"></v-radio>
+                    <v-radio label="취업" value="취업"></v-radio>
+                    <v-radio label="기타" value="기타"></v-radio>
+                  </v-radio-group>
+                  <v-col cols="12">
+                    <header>사유</header>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field label="Email*" required></v-text-field>
+                    <v-textarea solo name="input-7-4" label="사유를 입력하세요"></v-textarea>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field label="Password*" type="password" required></v-text-field>
+                    <header>조퇴시간</header>
                   </v-col>
-                  <v-col cols="12" sm="6">
-                    <v-select :items="['0-17', '18-29', '30-54', '54+']" label="Age*" required></v-select>
-                  </v-col>
-                  <v-col cols="12" sm="6">
-                    <v-autocomplete
-                      :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                      label="Interests"
-                      multiple
-                    ></v-autocomplete>
+
+                  <v-col cols="12">
+                    <v-dialog
+                      ref="dialog"
+                      v-model="modal2"
+                      :return-value.sync="time"
+                      persistent
+                      width="290px"
+                    >
+                      <template v-slot:activator="{ on }">
+                        <v-text-field v-model="outtime" label="시간을 선택하세요" readonly v-on="on"></v-text-field>
+                      </template>
+                      <v-time-picker v-if="modal2" v-model="time" full-width>
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog.save(time)">OK</v-btn>
+                      </v-time-picker>
+                    </v-dialog>
                   </v-col>
                 </v-row>
-              </v-container>
-              <small>*indicates required field</small>
+              </div>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -115,6 +139,7 @@
           </v-card>
         </v-dialog>
       </v-row>
+
       <v-row no-gutters>
         <v-col>입실</v-col>
         <v-col>퇴실</v-col>
@@ -126,7 +151,11 @@
 export default {
   data() {
     return {
-      dialog: false
+      dialog: false,
+      outtime: null,
+      intime: null,
+      menu2: false,
+      modal2: false
     };
   }
 };
