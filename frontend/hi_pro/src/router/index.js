@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import StudentManagement from "../views/StudentManagement"
+import AttendanceCheck from "../views/AttendanceCheck"
+import NoticeList from "../views/NoticeList"
 import Home from"../views/Home"
 Vue.use(VueRouter);
 
@@ -24,7 +26,18 @@ const routes = [
     path: "/studentManagement",
     name: "StudentManagement",
     component: StudentManagement
-  }
+  },
+  {
+    path:"/attendanceCheck",
+    name:"AttendanceCheck",
+    component:AttendanceCheck
+  },
+  {
+    path:"/noticeList",
+    name:"NoticeList",
+    component:NoticeList
+  },
+
   // {
   //   path: "/about",
   //   name: "About",
