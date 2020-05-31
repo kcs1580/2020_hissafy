@@ -28,7 +28,6 @@ export default {
 nav {
   width: 100%;
   z-index: 2;
-  background: #fff;
   position: absolute;
 }
 .router-view {
