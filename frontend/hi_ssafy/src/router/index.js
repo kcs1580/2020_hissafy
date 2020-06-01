@@ -7,12 +7,12 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/in",
+    path: "/",
     name: "InAndOut",
     component: InAndOut
   },
   {
-    path: "/",
+    path: "/onemode",
     name: "OneMode",
     component: OneMode
   },
