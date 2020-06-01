@@ -12,7 +12,7 @@ const routes = [
     component: InAndOut
   },
   {
-    path: "/OneMode",
+    path: "/onemode",
     name: "OneMode",
     component: OneMode
   },
