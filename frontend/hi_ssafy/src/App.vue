@@ -53,5 +53,6 @@ export default {
 <style scoped>
 #id {
   min-height: 100%;
+  min-width: 100%;
 }
 </style>

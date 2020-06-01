@@ -7,5 +7,6 @@
 <style scoped>
 #home {
     min-height: 100%;
+    min-width: 100%;
 }
 </style>
