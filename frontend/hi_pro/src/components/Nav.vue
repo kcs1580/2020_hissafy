@@ -52,7 +52,9 @@
             <li>
               <router-link to="noticeList">공지사항 관리</router-link>
             </li>
-            <li>입&middot;퇴실 모드 관리</li>
+            <li>
+              <router-link to="timeConfig">입&middot;퇴실 모드 관리</router-link>
+            </li>
           </ul>
         </div>
         <!-- //content -->
