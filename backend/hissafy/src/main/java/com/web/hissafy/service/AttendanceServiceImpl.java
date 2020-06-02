@@ -3,10 +3,12 @@ package com.web.hissafy.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.web.hissafy.repopsitory.IAttendanceRepository;
 import com.web.hisssafy.dto.AttendanceDto;
 
+@Service
 public class AttendanceServiceImpl implements IAttendanceService {
 	@Autowired
 	IAttendanceRepository repo;
