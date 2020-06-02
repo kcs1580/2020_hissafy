@@ -1,7 +1,7 @@
 <template>
   <div id="timeConfig">
     <div class="my-2 py-2">
-      <v-btn @click="editTime">{{btn}}</v-btn>
+      <v-btn color="primary" @click="editTime">{{btn}}</v-btn>
     </div>
     <div>
       <span>
