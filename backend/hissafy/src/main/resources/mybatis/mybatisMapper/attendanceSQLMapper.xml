@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hissafy.attendance">
+	<insert id="insert" parameterType="AttendanceDto">
+		insert into Attendance
+		(student_id, attendance_date, attendance_time, leaving_time, attendance_state)
+		values(
+		#{student_id},
+		#{attendance_date},
+		#{attendance_time},
+		#{leaving_time},
+		#{attendance_state}
+		)
+	</insert>
+	<update id="updateAttendance" parameterType="AttendanceDto">
+		update Attendance set
+			attendance_time=#{attendance_time},
+			attendance_state=#{attendance_state}
+		where
+			student_id= #{student_id} and attendance_date=#{attendance_date}
+	</update>
+	<update id="updateLeaving" parameterType="AttendanceDto">
+		update Attendance set
+			leaving_time=#{leaving_time},
+			attendance_state=#{attendance_state}
+		where
+			student_id= #{student_id} and attendance_date=#{attendance_date}
+	</update>
+	<select id="selectOne" parameterType="int" resultType="AttendanceDto">
+		select student_id, attendance_date, attendance_time, leaving_time, attendance_state
+		from Attendance
+		where 
+			student_id = #{student_id}
+	</select>
+	<select id="selectList" resultType="AttendanceDto">
+		select student_id, attendance_date, attendance_time, leaving_time, attendance_state
+		from Attendance
+	</select>
+	
+</mapper>

@@ -5,9 +5,13 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.web.hissafy.dto.ProDto" alias="ProDto" />
+		<typeAlias type="com.web.hissafy.dto.StudentDto" alias="StudentDto" />
+		<typeAlias type="com.web.hissafy.dto.AttendanceDto" alias="AttendanceDto" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatisMapper/proSQLMapper.xml" />
+		<mapper resource="mybatisMapper/studentSQLMapper.xml" />
+		<mapper resource="mybatisMapper/attendanceSQLMapper.xml" />
 	</mappers>
 </configuration>
