@@ -16,7 +16,7 @@ select * from Pro;
 
 drop table student;
 create table student(
-	student_id int not null,
+	student_id varchar(30) not null,
     area varchar(30),
     group_num int, 
     class_num int,
