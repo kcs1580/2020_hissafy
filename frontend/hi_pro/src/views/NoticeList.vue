@@ -1,6 +1,8 @@
 <template>
   <div id="noticeList">
-    <button id="insert">공지사항 추가</button>
+    <router-link to="addNotice">
+      <v-btn color="primary" dark class="mb-2 mx-2" id="insert">공지사항 추가</v-btn>
+    </router-link>
     <v-data-table :headers="headers" :items="notice" sort-by="notice_start" class="elevation-1"></v-data-table>
   </div>
 </template>

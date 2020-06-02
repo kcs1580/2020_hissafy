@@ -3,6 +3,9 @@ import VueRouter from "vue-router";
 import StudentManagement from "../views/StudentManagement"
 import AttendanceCheck from "../views/AttendanceCheck"
 import NoticeList from "../views/NoticeList"
+import AddNotice from "../views/AddNotice"
+import TimeConfig from "../views/TimeConfig"
+
 import Home from"../views/Home"
 Vue.use(VueRouter);
 
@@ -37,7 +40,16 @@ const routes = [
     name:"NoticeList",
     component:NoticeList
   },
-
+  {
+    path:"/addNotice",
+    name:"AddNotice",
+    component:AddNotice
+  },
+  {
+    path:"/timeConfig",
+    name : TimeConfig,
+    component :TimeConfig
+  }
   // {
   //   path: "/about",
   //   name: "About",
