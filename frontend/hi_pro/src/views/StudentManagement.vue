@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import http from "../http-common.js";
 export default {
   components: {},
   data() {
@@ -127,6 +128,7 @@ export default {
       }
     };
   },
+  mounted() {},
 
   computed: {
     formTitle() {
@@ -146,53 +148,15 @@ export default {
 
   methods: {
     initialize() {
-      this.students = [
-        {
-          id: "0211062",
-          group_num: 2,
-          area: "광주",
-          class: 1,
-          name: "이하연",
-          state: "재학",
-          face_id: "1111"
-        },
-        {
-          id: "0211064",
-          group_num: 2,
-          area: "광주",
-          class: 1,
-          name: "문지환",
-          state: "재학",
-          face_id: "888"
-        },
-        {
-          id: "0211063",
-          group_num: 2,
-          area: "광주",
-          class: 1,
-          name: "김창수",
-          state: "재학",
-          face_id: "5555"
-        },
-        {
-          id: "0211065",
-          group_num: 2,
-          area: "광주",
-          class: 1,
-          name: "방준영",
-          state: "재학",
-          face_id: "333"
-        },
-        {
-          id: "0211066",
-          group_num: 2,
-          area: "광주",
-          class: 1,
-          name: "서현준",
-          state: "재학",
-          face_id: "222"
-        }
-      ];
+      http
+        .get(`student/studentList`)
+        .then(response => {
+          this.students = response.data.list;
+        })
+        .catch(() => {
+          this.error = true;
+        })
+        .finally(() => (this.loading = false));
     },
     //저장하기
     editMode() {
