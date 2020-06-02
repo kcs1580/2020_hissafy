@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.web.hissafy.dto.AttendanceDto;
 import com.web.hissafy.repopsitory.IAttendanceRepository;
-import com.web.hisssafy.dto.AttendanceDto;
 
 @Service
 public class AttendanceServiceImpl implements IAttendanceService {

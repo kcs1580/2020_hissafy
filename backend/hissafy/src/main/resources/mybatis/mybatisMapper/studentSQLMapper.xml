@@ -7,15 +7,16 @@
 		insert into Student
 		(student_id, area, group_num, class_num, name, state, face_id)
 		values(
-		#{student_id},
-		#{area},
-		#{group_num},
-		#{class_num},
-		#{name},
-		#{state},
-		#{face_id}
+			#{student_id},
+			#{area},
+			#{group_num},
+			#{class_num},
+			#{name},
+			#{state},
+			#{face_id}
 		)
 	</insert>
+	
 	<update id="update" parameterType="StudentDto">
 		update Student set
 			area=#{area},
@@ -27,7 +28,9 @@
 		where
 			student_id= #{student_id}
 	</update>
-	<select id="selectOne" parameterType="int" resultType="StudentDto">
+	
+	
+	<select id="selectOne" parameterType="string" resultType="StudentDto">
 		select student_id, area, group_num, class_num, name, state, face_id
 		from Student
 		where 

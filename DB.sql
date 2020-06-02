@@ -1,7 +1,6 @@
-create database ssafy_db;
-
-use ssafy_db;
-
+create database hissafy;
+use hissafy;
+drop table Pro;
 create table Pro (
 	Pro_ID varchar(30),
     Pro_PW varchar(30) NOT NULL,
@@ -15,10 +14,11 @@ insert into `Pro` (`Pro_ID`, `Pro_PW`, `Pro_NAME`, `Pro_area`) values
 
 select * from Pro;
 
+drop table student;
 create table student(
-	student_id int not null,
-    group_num int, 
+	student_id varchar(30) not null,
     area varchar(30),
+    group_num int, 
     class_num int,
     name varchar(30),
     state varchar(30),
@@ -56,8 +56,14 @@ values
 
 select * from student;
 
+select * from student;
+select student_id, area, group_num, class_num, name, state, face_id
+		from Student;
+select student_id, area, group_num, class_num, name, state, face_id
+from Student;
+drop table attendance;
 create table attendance(
-	student_id int not null,
+	student_id varchar(30) not null,
 	attendance_date date not null,
     attendance_time varchar(30),
     leaving_time varchar(30), 
@@ -71,10 +77,10 @@ select * from attendance;
 insert into attendance
 (student_id, attendance_date, attendance_time, leaving_time, attendance_state)
 values
-(2,"2020-06-02",null,null,null),
-(3,"2020-06-02",null,null,null),
-(5,"2020-06-02",null,null,null),
-(6,"2020-06-02",null,null,null),
+("2","2020-06-02",null,null,null),
+("3","2020-06-02",null,null,null),
+("5","2020-06-02",null,null,null),
+("6","2020-06-02",null,null,null),
 (7,"2020-06-02",null,null,null),
 (8,"2020-06-02",null,null,null),
 (9,"2020-06-02",null,null,null),

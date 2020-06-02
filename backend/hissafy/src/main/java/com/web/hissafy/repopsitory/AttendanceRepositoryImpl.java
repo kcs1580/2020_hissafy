@@ -6,10 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.web.hisssafy.dto.AttendanceDto;
+import com.web.hissafy.dto.AttendanceDto;
 
 @Repository
-public class AttendanceRepositoryImpl implements IAttendanceRepository {
+public class AttendanceRepositoryImpl implements IAttendanceRepository{
 	@Autowired
 	SqlSession session;
 

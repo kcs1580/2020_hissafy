@@ -10,8 +10,8 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="mybatisMapper/proSQLMapper.xml" />
-		<mapper resource="mybatisMapper/studentSQLMapper.xml" />
-		<mapper resource="mybatisMapper/attendanceSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/proSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/studentSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/attendanceSQLMapper.xml" />
 	</mappers>
 </configuration>
