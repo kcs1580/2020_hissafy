@@ -5,13 +5,10 @@
 <mapper namespace="hissafy.attendance">
 	<insert id="insert" parameterType="AttendanceDto">
 		insert into Attendance
-		(student_id, attendance_date, attendance_time, leaving_time, attendance_state)
+		(student_id, attendance_date)
 		values(
 		#{student_id},
-		#{attendance_date},
-		#{attendance_time},
-		#{leaving_time},
-		#{attendance_state}
+		#{attendance_date}
 		)
 	</insert>
 	<update id="updateAttendance" parameterType="AttendanceDto">

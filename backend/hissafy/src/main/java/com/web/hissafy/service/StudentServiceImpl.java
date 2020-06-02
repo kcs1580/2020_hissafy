@@ -3,10 +3,12 @@ package com.web.hissafy.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.web.hissafy.repopsitory.IStudentRepository;
 import com.web.hisssafy.dto.StudentDto;
 
+@Service
 public class StudentServiceImpl implements IStudentService {
 	
 	@Autowired

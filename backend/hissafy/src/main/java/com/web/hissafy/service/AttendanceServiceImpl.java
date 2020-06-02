@@ -3,29 +3,29 @@ package com.web.hissafy.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.web.hissafy.repopsitory.IAttendanceRepository;
 import com.web.hisssafy.dto.AttendanceDto;
 
+@Service
 public class AttendanceServiceImpl implements IAttendanceService {
 	@Autowired
 	IAttendanceRepository repo;
 
 	@Override
-	public int attendanceInsert(int student_id, String attendance_date, String attendance_state) {
-		return repo.attendanceInsert(new AttendanceDto(student_id, attendance_date, attendance_state));
+	public int attendanceInsert(AttendanceDto attendance) {
+		return repo.attendanceInsert(attendance);
 	}
 
 	@Override
-	public int attendanceUpdateAttendance(int student_id, String attendance_date, String attendance_time,
-			String attendance_state) {
-		return repo.attendanceUpdateAttendance(new AttendanceDto(student_id, attendance_date, attendance_time, null, attendance_state));
+	public int attendanceUpdateAttendance(AttendanceDto attendance) {
+		return repo.attendanceUpdateAttendance(attendance);
 	}
 
 	@Override
-	public int attendanceUpdateLeaving(int student_id, String attendance_date, String leaving_time,
-			String attendance_state) {
-		return repo.attendanceUpdateLeaving(new AttendanceDto(student_id, attendance_date, null, leaving_time, attendance_state));
+	public int attendanceUpdateLeaving(AttendanceDto attendance) {
+		return repo.attendanceUpdateLeaving(attendance);
 	}
 
 	@Override

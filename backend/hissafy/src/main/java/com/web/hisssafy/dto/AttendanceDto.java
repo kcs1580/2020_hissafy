@@ -15,11 +15,10 @@ public class AttendanceDto {
 		super();
 	}
 	
-	public AttendanceDto(int student_id, String attendance_date, String attendance_state) {
+	public AttendanceDto(int student_id, String attendance_date) {
 		super();
 		this.student_id = student_id;
 		this.attendance_date = attendance_date;
-		this.attendance_state = attendance_state;
 	}
 	
 	public AttendanceDto(int student_id, String attendance_date, String attendance_time, String leaving_time, String attendance_state) {

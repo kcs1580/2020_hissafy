@@ -5,11 +5,11 @@ import java.util.List;
 import com.web.hisssafy.dto.AttendanceDto;
 
 public interface IAttendanceService {
-	public int attendanceInsert(int student_id, String attendance_date, String attendance_state);
+	public int attendanceInsert(AttendanceDto attendance);
 	
-	public int attendanceUpdateAttendance(int student_id, String attendance_date, String attendance_time, String attendance_state);
+	public int attendanceUpdateAttendance(AttendanceDto attendance);
 	
-	public int attendanceUpdateLeaving(int student_id, String attendance_date, String leaving_time, String attendance_state);
+	public int attendanceUpdateLeaving(AttendanceDto attendance);
 
 	public AttendanceDto attendanceInfo(int student_id);
 
