@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.web.hisssafy.dto.StudentDto;
 
+@Repository
 public class StudentRepositoryImpl implements IStudentRepository {
 	@Autowired
 	SqlSession session;
@@ -15,7 +17,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
 	public int studentInsert(StudentDto student) {
 		return session.insert("hissafy.student.insert",student);
 	}
-
+	
 	@Override
 	public int studentUpdate(StudentDto student) {
 		return session.update("hissafy.student.update", student);
@@ -30,5 +32,7 @@ public class StudentRepositoryImpl implements IStudentRepository {
 	public List<StudentDto> studentList() {
 		return session.selectList("hissafy.student.selectList");
 	}
+
+	
 
 }
