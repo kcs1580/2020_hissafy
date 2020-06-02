@@ -1,4 +1,4 @@
-package com.web.hisssafy.dto;
+package com.web.hissafy.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,12 +15,10 @@ public class StudentDto {
 	private String face_id;
 	
 	public StudentDto() {
-		super();
 	}
 
 	public StudentDto(String student_id, String area, int group_num, int class_num, String name, String state,
 			String face_id) {
-		super();
 		this.student_id = student_id;
 		this.area = area;
 		this.group_num = group_num;

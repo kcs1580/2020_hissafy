@@ -1,5 +1,5 @@
-create database ssafy_db;
-use ssafy_db;
+create database hissafy;
+use hissafy;
 drop table Pro;
 create table Pro (
 	Pro_ID varchar(30),
@@ -14,27 +14,35 @@ insert into `Pro` (`Pro_ID`, `Pro_PW`, `Pro_NAME`, `Pro_area`) values
 
 select * from Pro;
 
+drop table student;
 create table student(
-	id int not null,
-    group_num int, 
+	student_id int not null,
     area varchar(30),
-    class int,
+    group_num int, 
+    class_num int,
     name varchar(30),
-    state boolean,
+    state varchar(30),
     face_id varchar(40),
-    primary key (id)
+    primary key (student_id)
 )DEFAULT CHARSET=UTF8;
 
-select * from student;
+insert into `student`  (`student_id`,`group_num`,`area`,`class_num`,`name`,`state`,`face_id`) values
+('0211062','2', '광주','1','이하연', '재학', '123');
 
+select * from student;
+select student_id, area, group_num, class_num, name, state, face_id
+		from Student;
+select student_id, area, group_num, class_num, name, state, face_id
+from Student;
+drop table attendance;
 create table attendance(
 	attendance_date date not null,
-    id int not null , 
+    student_id int not null , 
     attendance_time varchar(30),
     leaving_time varchar(30), 
     attendance_state varchar(30),
-    primary key(attendance_date, id),
-    foreign key (id) references student(id)
+    primary key(attendance_date, student_id),
+    foreign key (student_id) references student(student_id)
 )DEFAULT CHARSET=UTF8;
 
 select * from attendance;

@@ -2,7 +2,7 @@ package com.web.hissafy.repopsitory;
 
 import java.util.List;
 
-import com.web.hisssafy.dto.StudentDto;
+import com.web.hissafy.dto.StudentDto;
 
 public interface IStudentRepository {
 	public int studentInsert(StudentDto student);
@@ -11,7 +11,7 @@ public interface IStudentRepository {
 	
 	public int studentUpdate(StudentDto student);
 
-	public StudentDto studentInfo(int student_id);
+	public StudentDto studentInfo(String student_id);
 
 	public List<StudentDto> studentList();
 	

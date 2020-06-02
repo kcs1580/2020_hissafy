@@ -2,7 +2,7 @@ package com.web.hissafy.service;
 
 import java.util.List;
 
-import com.web.hisssafy.dto.StudentDto;
+import com.web.hissafy.dto.StudentDto;
 
 public interface IStudentService {
 	// 교육생 등록
@@ -17,7 +17,7 @@ public interface IStudentService {
 			String face_id);
 
 	// 교육생 정보
-	public StudentDto studentInfo(int student_id);
+	public StudentDto studentInfo(String student_id);
 
 	// 교육생 전체 정보
 	public List<StudentDto> studentList();

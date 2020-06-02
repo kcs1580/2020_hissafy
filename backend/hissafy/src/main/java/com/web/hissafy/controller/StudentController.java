@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.web.hissafy.dto.StudentDto;
 import com.web.hissafy.service.IAttendanceService;
 import com.web.hissafy.service.IStudentService;
-import com.web.hisssafy.dto.StudentDto;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -60,6 +60,7 @@ public class StudentController {
 		ResponseEntity<Map<String,Object>> resEntity = null;
 		try {
 			List<StudentDto> list = sSer.studentList();
+			System.out.println(list.size());
 			Map<String,Object> msg = new HashMap<String,Object>();
 			msg.put("resmsg", "학생 리스트 조회 성공");
 			msg.put("list", list);

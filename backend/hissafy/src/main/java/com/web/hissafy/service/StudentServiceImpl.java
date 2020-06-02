@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.web.hissafy.dto.StudentDto;
 import com.web.hissafy.repopsitory.IStudentRepository;
-import com.web.hisssafy.dto.StudentDto;
 
 @Service
 public class StudentServiceImpl implements IStudentService {
@@ -24,16 +24,18 @@ public class StudentServiceImpl implements IStudentService {
 
 	@Override
 	public int studentListInsert(List<StudentDto> list) {
+		System.out.println("list=======================================");
 		List<StudentDto> getList = studentList();
 		HashMap<String, StudentDto> hash = new HashMap<>();
 		int cnt = 0;
 
 		for (int i = 0; i < getList.size(); i++) {
 			hash.put(getList.get(i).getStudent_id(), getList.get(i));
+			System.out.println(getList.get(i).getStudent_id());
 		}
-		StudentDto student = null;
 		for (int i = 0; i < list.size(); i++) {
-			student = list.get(i);
+			StudentDto student = list.get(i);
+			System.out.println(student.getStudent_id());
 			if (hash.containsKey(student.getStudent_id())) {
 				cnt += studentUpdate(student.getStudent_id(), student.getArea(), student.getGroup_num(),
 						student.getClass_num(), student.getName(), student.getState(), student.getFace_id());
@@ -53,7 +55,7 @@ public class StudentServiceImpl implements IStudentService {
 	}
 
 	@Override
-	public StudentDto studentInfo(int id) {
+	public StudentDto studentInfo(String id) {
 		return repo.studentInfo(id);
 	}
 
