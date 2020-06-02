@@ -10,7 +10,7 @@ public interface IAttendanceRepository {
 	public int attendanceUpdateAttendance(AttendanceDto attendance);
 	
 	public int attendanceUpdateLeaving(AttendanceDto attendance);
-
+	
 	public AttendanceDto attendanceInfo(int student_id);
 
 	public List<AttendanceDto> attendanceList();
