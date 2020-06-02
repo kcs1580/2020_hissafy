@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import StudentManagement from "../views/StudentManagement"
+import StudentEdit from "../views/StudentEdit"
 import AttendanceCheck from "../views/AttendanceCheck"
 import NoticeList from "../views/NoticeList"
 import AddNotice from "../views/AddNotice"
@@ -49,6 +50,11 @@ const routes = [
     path:"/timeConfig",
     name : TimeConfig,
     component :TimeConfig
+  },
+  {
+    path:"/updateStudent",
+    name :StudentEdit,
+    component:StudentEdit
   }
   // {
   //   path: "/about",
