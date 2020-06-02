@@ -1,0 +1,21 @@
+package com.web.hissafy.service;
+
+import java.util.List;
+
+import com.web.hisssafy.dto.StudentDto;
+
+public interface IStudentService {
+	// 교육생 등록
+	public int studentInsert(String student_id, String area, int group_num, int class_num, String name, String state,
+			String face_id);
+
+	// 교육생 정보 수정
+	public int studentUpdate(String student_id, String area, int group_num, int class_num, String name, String state,
+			String face_id);
+
+	// 교육생 정보
+	public StudentDto studentInfo(int student_id);
+
+	// 교육생 전체 정보
+	public List<StudentDto> studentList();
+}

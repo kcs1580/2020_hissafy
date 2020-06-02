@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hissafy.student">
+	<insert id="insert" parameterType="StudentDto">
+		insert into Student
+		(student_id, area, group_num, class_num, name, state, face_id)
+		values(
+		#{student_id},
+		#{area},
+		#{group_num},
+		#{class_num},
+		#{name},
+		#{state},
+		#{face_id}
+		)
+	</insert>
+	<update id="update" parameterType="StudentDto">
+		update Student set
+			area=#{area},
+			group_num=#{group_num},
+			class_num=#{class_num},
+			name=#{name},
+			state=#{state},
+			face_id=#{face_id}
+		where
+			student_id= #{student_id}
+	</update>
+	<select id="selectOne" parameterType="int" resultType="StudentDto">
+		select student_id, area, group_num, class_num, name, state, face_id
+		from Student
+		where 
+			student_id = #{student_id}
+	</select>
+	<select id="selectList" resultType="StudentDto">
+		select student_id, area, group_num, class_num, name, state, face_id
+		from Student
+	</select>
+	
+</mapper>
