@@ -1,4 +1,4 @@
-package com.web.hisssafy.dto;
+package com.web.hissafy.dto;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,6 +1,6 @@
 package com.web.hissafy.service;
 
-import com.web.hisssafy.dto.ProDto;
+import com.web.hissafy.dto.ProDto;
 
 public interface IProService {
 	// 프로 등록

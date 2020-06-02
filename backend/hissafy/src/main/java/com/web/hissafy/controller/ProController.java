@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.web.hissafy.dto.ProDto;
 import com.web.hissafy.service.IProService;
-import com.web.hisssafy.dto.ProDto;
 
 import io.swagger.annotations.ApiOperation;
 @Controller
-public class ProContoller {
+public class ProController {
 
 	@Autowired
 	IProService pSer;
