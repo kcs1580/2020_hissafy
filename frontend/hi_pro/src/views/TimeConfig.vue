@@ -158,10 +158,12 @@ export default {
       if (this.edit) {
         this.btn = "수정하기";
         // 저장하기
-        this.saveTime();
-        //time select 가능, aixos
-        this.edit = false;
-        this.disabled = true;
+        if (this.validateTime()) {
+          this.saveTime();
+          //time select 가능, aixos
+          this.edit = false;
+          this.disabled = true;
+        }
       } else {
         //수정하기
         this.btn = "저장하기";
@@ -185,6 +187,26 @@ export default {
     },
     validateTime() {
       //시간 검사
+      let attendance_start =
+        this.time.attendance_start_h * 60 + this.time.attendance_start_m * 1;
+      let attendance_end =
+        this.time.attendance_end_h * 60 + this.time.attendance_end_m * 1;
+      let leaving_start =
+        this.time.leaving_start_h * 60 + this.time.leaving_start_m * 1;
+      let leaving_end =
+        this.time.leaving_end_h * 60 + this.time.leaving_end_m * 1;
+      console.log(attendance_start, attendance_end, leaving_start, leaving_end);
+      if (attendance_start > attendance_end) {
+        alert("입실 시작시간은 입실 마감시간보다 빨라야 합니다!");
+        return false;
+      } else if (leaving_start > leaving_end) {
+        alert("퇴실 시작시간은 퇴실 마감시간보다 빨라야 합니다!");
+        return false;
+      } else if (attendance_end > leaving_start) {
+        alert("입실 시간은 퇴실 시간보다 빨라야 합니다!");
+        return false;
+      }
+      return true;
     }
   }
 };
