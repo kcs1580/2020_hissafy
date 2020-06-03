@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.web.hissafy.dto.DuringStudentDto;
 import com.web.hissafy.dto.StudentDto;
 import com.web.hissafy.repopsitory.IStudentRepository;
 
@@ -62,6 +63,11 @@ public class StudentServiceImpl implements IStudentService {
 	@Override
 	public List<StudentDto> studentList() {
 		return repo.studentList();
+	}
+	
+	@Override
+	public List<DuringStudentDto> studentDuringList() {
+		return repo.studentDuringList();
 	}
 
 }

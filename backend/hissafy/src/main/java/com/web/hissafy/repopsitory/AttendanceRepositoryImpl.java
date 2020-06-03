@@ -20,16 +20,16 @@ public class AttendanceRepositoryImpl implements IAttendanceRepository{
 
 	@Override
 	public int attendanceUpdateAttendance(AttendanceDto attendance) {
-		return session.update("hissafy.attendace.updateAttendance", attendance);
+		return session.update("hissafy.attendance.updateAttendance", attendance);
 	}
 
 	@Override
 	public int attendanceUpdateLeaving(AttendanceDto attendance) {
-		return session.update("hissafy.attendace.updateLeaving", attendance);
+		return session.update("hissafy.attendance.updateLeaving", attendance);
 	}
 
 	@Override
-	public AttendanceDto attendanceInfo(int student_id) {
+	public AttendanceDto attendanceInfo(String student_id) {
 		return session.selectOne("hissafy.attendance.selectOne", student_id);
 	}
 

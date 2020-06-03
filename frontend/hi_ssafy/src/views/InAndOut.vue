@@ -64,7 +64,7 @@
                   tile
                   style="height:100%; background-color:#ABABAB;"
                 >
-                  <v-btn text large class="text-center" @click="addStudent">입실학생추가</v-btn>
+                  <v-btn text large class="text-center" @click="addAttendanceStudent">입실학생추가</v-btn>
                 </v-card>
               </v-col>
             </v-row>
@@ -98,7 +98,10 @@
                         sm="9"
                       >
                       <p>{{item.area}} {{item.group_num}}기 {{item.class}}반 {{item.name}}</p>
-                      <p>{{new Date()}}</p>
+                      <p v-if="item.attendance_state === '입실완료'">입실완료</p>
+                      <p v-if="item.attendance_state === '입실완료'">{{item.attendance_time}}</p>
+                      <p v-if="item.attendance_state === '퇴실완료'">퇴실완료</p>
+                      <p v-if="item.attendance_state === '퇴실완료'">{{item.leaving_time}}</p>
                       </v-col>
                     </v-row>
                   </v-card>
@@ -136,6 +139,7 @@
 </template>
 
 <script>
+import http from '../http-common'
 export default {
   name: "Home",
   components: {
@@ -167,18 +171,63 @@ export default {
     //     this.loading = false
     //   })
     // },
-    addStudent () {
-      let randomNumber = this.getRandomIntInclusive(0,23)
-      // let student = this.studentList[this.studentIndex]
-      let student = this.studentList[randomNumber]
-      if(student.attendance_state === false) {
-        student.attendance_state = true
+    addAttendanceStudent () {
+      let randomFaceId = String(this.getRandomIntInclusive(0,23))
+      let student = null
+      for(let i = 0 ; i < this.studentList.length ; i++) {
+        if(this.studentList[i].face_id === randomFaceId){
+            student = this.studentList[i];
+            break;
+        }
+      }
+      console.log(student)
+      if(student !== null && student.attendance_state === null) {
+        student.attendance_state = "입실완료"
+        student.attendance_time = new Date()
         this.currentStudentList.unshift(student)
         console.log(student.name + " " + student.attendance_state)
-      } else {
-        console.log(student.name + "은(는) 이미 입실 처리 되었습니다.")
+        let fdata = new FormData()
+        fdata.append('student_id', student.student_id)
+        fdata.append('attendance_date', student.attendance_date)
+        fdata.append('attendance_time', student.attendance_time)
+        fdata.append('leaving_time', student.leaving_time)
+        fdata.append('attendance_state', student.attendance_state)
+        http
+          .put('/student/updateAttendance', student)
+          .then(
+            response => {
+              console.log(response.data.message)
+            }
+          )
+          .catch(err => console.log(err))
+          .finally(
+          )
+
+      } else if(student !== null && student.attendance_state === "입실완료") {
+        student.attendance_state = "퇴실완료"
+        student.leaving_time = new Date()
+        this.currentStudentList.unshift(student)
+        console.log(student.name + " " + student.attendance_state)
+        let fdata = new FormData()
+        fdata.append('student_id', student.student_id)
+        fdata.append('attendance_date', student.attendance_date)
+        fdata.append('attendance_time', student.attendance_time)
+        fdata.append('leaving_time', student.leaving_time)
+        fdata.append('attendance_state', student.attendance_state)
+        http
+          .put('/student/updateAttendance', student)
+          .then(
+            response => {
+              console.log(response.data.message)
+            }
+          )
+          .catch(err => console.log(err))
+          .finally(
+          )
+
+      } else if(student !== null) {
+        console.log(student.name + "은(는) 이미 입퇴실 처리 되었습니다.")
       }
-      // this.studentIndex++
     },
     getRandomIntInclusive(min, max) {
       min = Math.ceil(min);
@@ -187,224 +236,17 @@ export default {
     }
   },
   mounted() {
-    this.studentList = [
-      {
-        id: 1,
-        name: "강기동",
-        faceId: 1,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 2,
-        name: "김대들",
-        faceId: 2,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 3,
-        name: "김보현",
-        faceId: 3,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 4,
-        name: "김진출",
-        faceId: 4,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 5,
-        name: "김창수",
-        faceId: 5,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 6,
-        name: "김태동",
-        faceId: 6,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 7,
-        name: "문지환",
-        faceId: 7,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 8,
-        name: "박종수",
-        faceId: 8,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 9,
-        name: "박호연",
-        faceId: 9,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 10,
-        name: "방준영",
-        faceId: 10,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 11,
-        name: "서현준",
-        faceId: 11,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 12,
-        name: "송광우",
-        faceId: 12,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 13,
-        name: "양성진",
-        faceId: 13,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 14,
-        name: "오지윤",
-        faceId: 14,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 15,
-        name: "원태희",
-        faceId: 15,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 16,
-        name: "이경석",
-        faceId: 16,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 17,
-        name: "이상아",
-        faceId: 17,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 18,
-        name: "이하연",
-        faceId: 18,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 19,
-        name: "정성원",
-        faceId: 19,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 20,
-        name: "정준호",
-        faceId: 20,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 21,
-        name: "정희선",
-        faceId: 21,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 22,
-        name: "조승우",
-        faceId: 22,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 23,
-        name: "최용선",
-        faceId: 23,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      },
-      {
-        id: 24,
-        name: "최창현",
-        faceId: 24,
-        area: "광주",
-        class: 2,
-        group_num: 2,
-        attendance_state: false
-      }
-    ]
+    http
+      .get('/student/studentduringlist')
+      .then(
+        response => {
+          console.log(response.data.message)
+          this.studentList = response.data.result;
+        }
+      )
+      .catch(err => console.log(err))
+      .finally(
+      )
   }
 };
 </script>

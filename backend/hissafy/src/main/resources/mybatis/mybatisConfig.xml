@@ -7,6 +7,7 @@
 		<typeAlias type="com.web.hissafy.dto.ProDto" alias="ProDto" />
 		<typeAlias type="com.web.hissafy.dto.StudentDto" alias="StudentDto" />
 		<typeAlias type="com.web.hissafy.dto.AttendanceDto" alias="AttendanceDto" />
+		<typeAlias type="com.web.hissafy.dto.DuringStudentDto" alias="DuringStudentDto" />
 	</typeAliases>
 
 	<mappers>

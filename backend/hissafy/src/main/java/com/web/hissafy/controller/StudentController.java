@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +21,7 @@ import com.web.hissafy.dto.StudentDto;
 import com.web.hissafy.service.IAttendanceService;
 import com.web.hissafy.service.IStudentService;
 import com.web.hissafy.dto.AttendanceDto;
+import com.web.hissafy.dto.DuringStudentDto;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -41,6 +41,7 @@ public class StudentController {
 	public @ResponseBody ResponseEntity<Map<String, Object>> updateAttendance(@RequestBody AttendanceDto attendance) {
 		ResponseEntity<Map<String, Object>> resEntity = null;
 		Map<String, Object> map = new HashMap<>();
+		System.out.println(attendance);
 		try {
 			if (attendance.getAttendance_state().equals("입실완료")) {
 				int update = aSer.attendanceUpdateAttendance(attendance);
@@ -249,6 +250,7 @@ public class StudentController {
 		}
 		return resEntity;
 	}
+	
 	@GetMapping("/studentlist")
 	@ApiOperation(value ="학생리스트 조회 ", response = List.class)
 	private @ResponseBody ResponseEntity<Map<String,Object>> listBoard(){
@@ -263,6 +265,25 @@ public class StudentController {
 		}catch (RuntimeException e) {
 			Map<String, Object> msg = new HashMap<String, Object>();
 			msg.put("resmsg", "학생 리스트 조회 실패");
+			resEntity = new ResponseEntity<Map<String, Object>>(msg, HttpStatus.OK);
+		}
+		return resEntity;
+	}
+	
+	@GetMapping("/studentduringlist")
+	@ApiOperation(value ="학생리스트 조회 ", response = List.class)
+	private @ResponseBody ResponseEntity<Map<String,Object>> listDuringStudent(){
+		ResponseEntity<Map<String,Object>> resEntity = null;
+		try {
+			List<DuringStudentDto> list = sSer.studentDuringList();
+			System.out.println("입과중인 학생 " + list.size() + "명 조회 성공");
+			Map<String,Object> msg = new HashMap<String,Object>();
+			msg.put("message", "입과중인 학생 리스트 조회 성공");
+			msg.put("result", list);
+			resEntity = new ResponseEntity<Map<String,Object>>(msg,HttpStatus.OK);
+		}catch (RuntimeException e) {
+			Map<String, Object> msg = new HashMap<String, Object>();
+			msg.put("message", "입과중인 학생 리스트 조회 실패");
 			resEntity = new ResponseEntity<Map<String, Object>>(msg, HttpStatus.OK);
 		}
 		return resEntity;

@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 public class AttendanceDto {
-	private int student_id;
+	private String student_id;
 	private String attendance_date;
 	private String attendance_time;
 	private String leaving_time;
@@ -15,13 +15,13 @@ public class AttendanceDto {
 		super();
 	}
 	
-	public AttendanceDto(int student_id, String attendance_date) {
+	public AttendanceDto(String student_id, String attendance_date) {
 		super();
 		this.student_id = student_id;
 		this.attendance_date = attendance_date;
 	}
 	
-	public AttendanceDto(int student_id, String attendance_date, String attendance_time, String leaving_time, String attendance_state) {
+	public AttendanceDto(String student_id, String attendance_date, String attendance_time, String leaving_time, String attendance_state) {
 		super();
 		this.student_id = student_id;
 		this.attendance_date = attendance_date;
@@ -30,11 +30,11 @@ public class AttendanceDto {
 		this.attendance_state = attendance_state;
 	}
 
-	public int getStudent_id() {
+	public String getStudent_id() {
 		return student_id;
 	}
 
-	public void setStudent_id(int student_id) {
+	public void setStudent_id(String student_id) {
 		this.student_id = student_id;
 	}
 
