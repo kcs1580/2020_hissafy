@@ -9,6 +9,8 @@
 		<typeAlias type="com.web.hissafy.dto.AttendanceDto" alias="AttendanceDto" />
 		<typeAlias type="com.web.hissafy.dto.DuringStudentDto" alias="DuringStudentDto" />
 		<typeAlias type="com.web.hissafy.dto.TimeDto" alias="TimeDto" />
+		<typeAlias type="com.web.hissafy.dto.EarlyLeaveDto" alias="EarlyLeaveDto" />
+		
 		
 	</typeAliases>
 
@@ -17,5 +19,6 @@
 		<mapper resource="mybatis/mybatisMapper/studentSQLMapper.xml" />
 		<mapper resource="mybatis/mybatisMapper/attendanceSQLMapper.xml" />
 		<mapper resource="mybatis/mybatisMapper/timeSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/earlyleaveSQLMapper.xml" />
 	</mappers>
 </configuration>

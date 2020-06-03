@@ -1,4 +1,4 @@
-create database hissafy;
+﻿create database hissafy;
 use hissafy;
 drop table Pro;
 create table Pro (
@@ -117,3 +117,17 @@ select a.student_id, a.area, a.group_num, a.class_num, a.name, a.state, a.face_i
 from Student as a left join Attendance as b on a.student_id = b.student_id
 where state = "입과"
 order by student_id;
+
+
+drop table earlyleave;
+create table earlyleave(
+	student_id varchar(30) not null,
+    division varchar(10),
+    sort varchar(10), 
+    reason varchar(100),
+    leaving_time varchar(30),
+    approval_state varchar(30),
+    primary key (student_id)
+)DEFAULT CHARSET=UTF8;
+select * from earlyleave;
+insert into earlyleave value("0211730", "조퇴", "병원", "감기진료", "14:00", "승인");

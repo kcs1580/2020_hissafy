@@ -79,7 +79,7 @@
           </v-card>
         </v-dialog>
       </v-row>
-
+      
       <v-row no-gutters>
         <v-col>입실</v-col>
         <v-col>퇴실</v-col>
@@ -91,6 +91,7 @@
 export default {
   data() {
     return {
+    
       subj: "조퇴",
       sort: "병원",
       dialog: false,
@@ -107,7 +108,8 @@ export default {
       this.dialog2 = false;
       this.outtime = null;
       this.intime = null;
-    }
+    },
+    
   }
 };
 </script>
