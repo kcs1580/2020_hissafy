@@ -58,5 +58,3 @@ time_id int auto_increment ,
   leaving_end_m varchar(10) not null,
   primary key(time_id)
 );
-
-select * from attendance;
