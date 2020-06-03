@@ -41,4 +41,11 @@
 		from Student
 	</select>
 	
+	<select id="selectDuringList" resultType="DuringStudentDto">
+		select a.student_id, a.area, a.group_num, a.class_num, a.name, a.state, a.face_id, b.attendance_date, b.attendance_time, b.leaving_time, b.attendance_state
+		from Student as a left join Attendance as b on a.student_id = b.student_id
+		where state = "입과"
+		order by student_id;
+	</select>
+	
 </mapper>

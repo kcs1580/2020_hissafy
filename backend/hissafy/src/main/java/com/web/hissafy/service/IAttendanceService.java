@@ -11,7 +11,7 @@ public interface IAttendanceService {
 	
 	public int attendanceUpdateLeaving(AttendanceDto attendance);
 
-	public AttendanceDto attendanceInfo(int student_id);
+	public AttendanceDto attendanceInfo(String student_id);
 
 	public List<AttendanceDto> attendanceList();
 }

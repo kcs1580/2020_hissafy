@@ -29,7 +29,7 @@ public class AttendanceServiceImpl implements IAttendanceService {
 	}
 
 	@Override
-	public AttendanceDto attendanceInfo(int student_id) {
+	public AttendanceDto attendanceInfo(String student_id) {
 		return repo.attendanceInfo(student_id);
 	}
 
