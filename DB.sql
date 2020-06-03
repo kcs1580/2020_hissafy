@@ -72,6 +72,21 @@ create table attendance(
     foreign key (student_id) references student(student_id)
 )DEFAULT CHARSET=UTF8;
 
+<<<<<<< HEAD
+drop table timeConfig;
+create table timeConfig(
+time_id int auto_increment ,
+  attendance_start_h varchar(10) not null,
+  attendance_start_m varchar(10) not null,
+  attendance_end_h varchar(10) not null,
+  attendance_end_m varchar(10) not null,
+  leaving_start_h varchar(10) not null,
+  leaving_start_m varchar(10) not null,
+  leaving_end_h varchar(10) not null,
+  leaving_end_m varchar(10) not null,
+  primary key(time_id)
+);
+=======
 select * from attendance;
 
 insert into attendance
@@ -93,3 +108,4 @@ values
 (18,"2020-06-02",null,null,null),
 (21,"2020-06-02",null,null,null),
 (24,"2020-06-02",null,null,null);
+>>>>>>> e8884bc5e5452f9011865f29735aa5357a85b673

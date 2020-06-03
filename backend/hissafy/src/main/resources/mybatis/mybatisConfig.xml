@@ -7,11 +7,14 @@
 		<typeAlias type="com.web.hissafy.dto.ProDto" alias="ProDto" />
 		<typeAlias type="com.web.hissafy.dto.StudentDto" alias="StudentDto" />
 		<typeAlias type="com.web.hissafy.dto.AttendanceDto" alias="AttendanceDto" />
+		<typeAlias type="com.web.hissafy.dto.TimeDto" alias="TimeDto" />
+		
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/mybatisMapper/proSQLMapper.xml" />
 		<mapper resource="mybatis/mybatisMapper/studentSQLMapper.xml" />
 		<mapper resource="mybatis/mybatisMapper/attendanceSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/timeSQLMapper.xml" />
 	</mappers>
 </configuration>
