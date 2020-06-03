@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.web.hissafy.dto.DuringStudentDto;
 import com.web.hissafy.dto.StudentDto;
 
 @Repository
@@ -31,5 +32,10 @@ public class StudentRepositoryImpl implements IStudentRepository {
 	@Override
 	public List<StudentDto> studentList() {
 		return session.selectList("hissafy.student.selectList");
+	}
+	
+	@Override
+	public List<DuringStudentDto> studentDuringList() {
+		return session.selectList("hissafy.student.selectDuringList");
 	}
 }
