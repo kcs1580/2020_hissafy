@@ -8,7 +8,10 @@
       <v-content>
         <v-container>
           <v-layout row wrap align-center>
-            <v-flex xs12 md4>사용자 인식</v-flex>
+            <v-flex xs12 md4>
+              사용자 인식
+              <userdetect />
+            </v-flex>
             <v-flex xs12 md5 offset-md2>
               1인용 메뉴들
               <onemenus />

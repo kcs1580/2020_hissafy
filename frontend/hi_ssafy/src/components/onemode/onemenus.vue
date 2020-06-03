@@ -4,23 +4,33 @@
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">외출신청</v-btn>
+            <v-btn color="primary" dark v-on="on">조퇴/외출 신청</v-btn>
           </template>
           <v-card>
             <v-card-title>
-              <span class="headline">외출신청</span>
+              <span class="headline">조퇴/외출 신청</span>
             </v-card-title>
             <v-card-text>
               <div>
-                <v-row>
-                  <v-col cols="12">
+                <v-row justify="space-around">
+                  <v-col cols="12" sm="6">
+                    <header>조퇴/외출</header>
+                  </v-col>
+                  <v-col cols="12" sm="6">
                     <header>분류</header>
                   </v-col>
+
+                  <v-radio-group v-model="subj" row justify="center">
+                    <v-radio label="조퇴" value="조퇴"></v-radio>
+                    <v-radio label="외출" value="외출"></v-radio>
+                  </v-radio-group>
+
                   <v-radio-group v-model="sort" row>
                     <v-radio label="병원" value="병원"></v-radio>
                     <v-radio label="취업" value="취업"></v-radio>
                     <v-radio label="기타" value="기타"></v-radio>
                   </v-radio-group>
+
                   <v-col cols="12">
                     <header>사유</header>
                   </v-col>
@@ -42,33 +52,22 @@
                       width="290px"
                     >
                       <template v-slot:activator="{ on }">
-                        <v-text-field v-model="outtime" label="외출 시간을 선택하세요" readonly v-on="on"></v-text-field>
+                        <v-text-field
+                          v-model="outtime"
+                          label="외출 시간을 선택하세요"
+                          prepend-icon="mdi-alarm"
+                          readonly
+                          v-on="on"
+                        ></v-text-field>
                       </template>
                       <v-time-picker v-if="modal2" v-model="outtime" full-width>
                         <v-spacer></v-spacer>
                         <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.dialog.save(outtime)">OK</v-btn>
+                        <v-btn text color="primary" @click="$refs.dialog.save(time)">OK</v-btn>
                       </v-time-picker>
                     </v-dialog>
                   </v-col>
-                  <v-col cols="12" sm="6">
-                    <v-dialog
-                      ref="dialog"
-                      v-model="modal2"
-                      :return-value.sync="time"
-                      persistent
-                      width="290px"
-                    >
-                      <template v-slot:activator="{ on }">
-                        <v-text-field v-model="intime" label="복귀 시간을 선택하세요" readonly v-on="on"></v-text-field>
-                      </template>
-                      <v-time-picker v-if="modal2" v-model="intime" full-width>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.dialog.save(intime)">OK</v-btn>
-                      </v-time-picker>
-                    </v-dialog>
-                  </v-col>
+                  <v-col cols="12" sm="6"></v-col>
                 </v-row>
               </div>
             </v-card-text>
@@ -76,65 +75,6 @@
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
               <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
-      </v-row>
-      <v-row justify="center">
-        <v-dialog v-model="dialog2" persistent max-width="600px">
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">조퇴신청</v-btn>
-          </template>
-          <v-card>
-            <v-card-title>
-              <span class="headline">조퇴신청</span>
-            </v-card-title>
-            <v-card-text>
-              <div>
-                <v-row>
-                  <v-col cols="12">
-                    <header>분류</header>
-                  </v-col>
-                  <v-radio-group v-model="sort" row>
-                    <v-radio label="병원" value="병원"></v-radio>
-                    <v-radio label="취업" value="취업"></v-radio>
-                    <v-radio label="기타" value="기타"></v-radio>
-                  </v-radio-group>
-                  <v-col cols="12">
-                    <header>사유</header>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-textarea label="조퇴사유를 입력하세요" auto-grow outlined rows="3" row-height="25"></v-textarea>
-                  </v-col>
-                  <v-col cols="12">
-                    <header>조퇴시간</header>
-                  </v-col>
-
-                  <v-col cols="12">
-                    <v-dialog
-                      ref="dialog2"
-                      v-model="modal2"
-                      :return-value.sync="time"
-                      persistent
-                      width="290px"
-                    >
-                      <template v-slot:activator="{ on }">
-                        <v-text-field v-model="outtime" label="조퇴 시간을 선택하세요" readonly v-on="on"></v-text-field>
-                      </template>
-                      <v-time-picker v-if="modal2" v-model="outtime" full-width>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="primary" @click="modal2 = false">Cancel</v-btn>
-                        <v-btn text color="primary" @click="$refs.dialog.save(outtime)">OK</v-btn>
-                      </v-time-picker>
-                    </v-dialog>
-                  </v-col>
-                </v-row>
-              </div>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="clear">Close</v-btn>
-              <v-btn color="blue darken-1" text @click="dialog2 = false">Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -151,6 +91,8 @@
 export default {
   data() {
     return {
+      subj: "조퇴",
+      sort: "병원",
       dialog: false,
       dialog2: false,
       outtime: null,
