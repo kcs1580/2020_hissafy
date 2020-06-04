@@ -4,7 +4,7 @@
       <v-row justify="center">
         <v-dialog v-model="dialog" persistent max-width="600px">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark v-on="on">조퇴/외출 신청</v-btn>
+            <v-btn color="primary" dark v-on="on" class="earlybtn">조퇴/외출 신청</v-btn>
           </template>
           <v-card>
             <v-card-title>
@@ -19,6 +19,7 @@
                   <v-col cols="12" sm="6">
                     <header>분류</header>
                   </v-col>
+                  
 
                   <v-radio-group v-model="subj" row justify="center">
                     <v-radio label="조퇴" value="조퇴"></v-radio>
@@ -31,18 +32,20 @@
                     <v-radio label="기타" value="기타"></v-radio>
                   </v-radio-group>
 
-                  <v-col cols="12">
+                  <v-col cols="12" sm = "6">
                     <header>사유</header>
                   </v-col>
-                  <v-col cols="12">
-                    <v-textarea label="외출 사유를 입력하세요" auto-grow outlined rows="3" row-height="25"></v-textarea>
-                  </v-col>
-                  <v-col cols="12" sm="6">
+                 
+                  
+                  
+                  <v-col cols="12" sm="6" >
                     <header>외출시간</header>
                   </v-col>
+
                   <v-col cols="12" sm="6">
-                    <header>복귀시간</header>
+                    <v-textarea label="외출 사유를 입력하세요" auto-grow outlined rows="3" row-height="25"></v-textarea>
                   </v-col>
+                  
                   <v-col cols="12" sm="6">
                     <v-dialog
                       ref="dialog"
@@ -67,14 +70,16 @@
                       </v-time-picker>
                     </v-dialog>
                   </v-col>
-                  <v-col cols="12" sm="6"></v-col>
+                 
+
+              
                 </v-row>
               </div>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-              <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+              <v-btn color="blue darken-1" text @click="dialog = false">취소</v-btn>
+              <v-btn color="blue darken-1" text @click="submitForm">신청</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -103,6 +108,9 @@ export default {
     };
   },
   methods: {
+    Submitform(){
+
+    },
     clear() {
       this.dialog = false;
       this.dialog2 = false;
@@ -116,5 +124,10 @@ export default {
 <style scoped>
 #menus {
   min-height: 100%;
+}
+.earlybtn{
+  width: 500px;
+  height: 500px;
+
 }
 </style>
