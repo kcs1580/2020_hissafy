@@ -5,7 +5,7 @@
         <v-subheader>Title</v-subheader>
       </v-flex>
       <v-flex xs6>
-        <v-text-field id="testing" name="input-1"></v-text-field>
+        <v-text-field v-model="title" name="input-1"></v-text-field>
       </v-flex>
       <v-flex xs8 :class="`d-flex justify-center mb-6`">
         <v-file-input accept="image/*" label="File input" @change="onFileChange"></v-file-input>
@@ -69,21 +69,40 @@
 </template>
 
 <script>
+import http from "../http-common.js";
 export default {
   data() {
     return {
+      title: "",
       start_date: "",
       end_date: "",
       start_menu: false,
       end_menu: false,
       img_src: "",
-      img: ""
+      img: "",
+      frm: new FormData()
     };
   },
   methods: {
     save() {
-      console.log(this.start_date);
-      console.log(this.end_date);
+      this.frm.append("start_date", this.start_date);
+      this.frm.append("end_date", this.end_date);
+      this.frm.append("img", this.img);
+      this.frm.append("title", this.title);
+      var dt = new Date();
+      var tdt = dt.toISOString().substring(0, 10);
+      this.frm.append("reg_date", tdt);
+      console.log(this.frm);
+      http
+        .post("notice/register", this.frm)
+        .then(response => {
+          console.log("res", response);
+          this.$router.push("/noticeList");
+        })
+        .catch(() => {
+          this.error = true;
+        })
+        .finally(() => (this.loading = false));
     },
     onFileChange(e) {
       this.img = e;

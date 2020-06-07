@@ -4,6 +4,7 @@ import StudentManagement from "../views/StudentManagement"
 import StudentEdit from "../views/StudentEdit"
 import AttendanceCheck from "../views/AttendanceCheck"
 import NoticeList from "../views/NoticeList"
+import NoticeInfo from "../views/NoticeInfo"
 import AddNotice from "../views/AddNotice"
 import TimeConfig from "../views/TimeConfig"
 
@@ -40,6 +41,11 @@ const routes = [
     path:"/noticeList",
     name:"NoticeList",
     component:NoticeList
+  },
+  {
+    path:"/noticeInfo/:notice_id",
+    name:"NoticeInfo",
+    component:NoticeInfo
   },
   {
     path:"/addNotice",
