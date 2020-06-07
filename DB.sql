@@ -131,3 +131,16 @@ create table earlyleave(
 )DEFAULT CHARSET=UTF8;
 select * from earlyleave;
 insert into earlyleave value("0211730", "조퇴", "병원", "감기진료", "14:00", "승인");
+
+drop table notice;
+create table notice(
+	notice_id int auto_increment,
+    notice_title varchar(40),
+    notice_img varchar(100), 
+    start_date varchar(20), 
+    end_date varchar(20),
+	reg_date varchar(20),
+    primary key (notice_id)
+)DEFAULT CHARSET=UTF8
+ COLLATE utf8_bin;
+ select * from notice;
