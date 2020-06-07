@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.web.hissafy.dto.ProDto" alias="ProDto" />
+		<typeAlias type="com.web.hissafy.dto.StudentDto" alias="StudentDto" />
+		<typeAlias type="com.web.hissafy.dto.AttendanceDto" alias="AttendanceDto" />
+		<typeAlias type="com.web.hissafy.dto.DuringStudentDto" alias="DuringStudentDto" />
+		<typeAlias type="com.web.hissafy.dto.TimeDto" alias="TimeDto" />
+		<typeAlias type="com.web.hissafy.dto.EarlyLeaveDto" alias="EarlyLeaveDto" />
+		
+		
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="mybatis/mybatisMapper/proSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/studentSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/attendanceSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/timeSQLMapper.xml" />
+		<mapper resource="mybatis/mybatisMapper/earlyleaveSQLMapper.xml" />
+	</mappers>
+</configuration>

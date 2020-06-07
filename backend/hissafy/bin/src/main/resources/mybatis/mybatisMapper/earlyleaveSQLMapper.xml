@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hissafy.earlyleave">
+	<insert id="insert" parameterType="EarlyLeaveDto">
+		insert into earlyleave
+		(student_id, division, sort, reason, leaving_time, approval_state)
+		values(
+		#{student_id},
+		#{division},
+		#{sort},
+		#{reason},
+		#{leaving_time},
+		#{approval_state}
+
+		)
+	</insert>
+
+	<update id="update" parameterType="EarlyLeaveDto">
+		update earlyleave set
+		division=#{division},
+		sort=#{sort},
+		reason=#{reason},
+		leaving_time=#{leaving_time},
+		approval_state=#{approval_state}
+		where
+		student_id= #{student_id}
+	</update>
+
+
+	<select id="selectOne" parameterType="string"
+		resultType="EarlyLeaveDto">
+		select student_id, division, sort, reason, leaving_time,
+		approval_state
+		from earlyleave
+		where
+		student_id = #{student_id}
+	</select>
+
+	<select id="selectList" resultType="EarlyLeaveDto">
+		select student_id, division,
+		sort, reason, leaving_time, approval_state
+		from earlyleave
+	</select>
+
+	<delete id="delte" parameterType="string">
+		delete from earlyleave where student_id = #{student_id}
+	</delete>
+
+
+</mapper>

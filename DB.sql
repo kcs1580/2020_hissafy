@@ -121,13 +121,14 @@ order by student_id;
 
 drop table earlyleave;
 create table earlyleave(
-	student_id varchar(30) not null,
+    e_id int auto_increment,
+    student_id varchar(30) not null,
     division varchar(10),
     sort varchar(10), 
     reason varchar(100),
     leaving_time varchar(30),
     approval_state varchar(30),
-    primary key (student_id)
+    primary key(e_id)
 )DEFAULT CHARSET=UTF8;
 select * from earlyleave;
 insert into earlyleave value("0211730", "조퇴", "병원", "감기진료", "14:00", "승인");
