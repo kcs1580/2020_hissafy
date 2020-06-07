@@ -26,45 +26,46 @@
           >
             <v-row no-gutters style="height:10%; padding-bottom:5px;">
               <v-col
-                cols="4"
-                sm="4"
+                cols="8"
+                sm="8"
                 style="height:100%;"
               >
                 <v-card
-                  class="pa-2 white--text d-flex align-center"
+                  class="pa-2 white--text d-flex align-center justify-center"
                   outlined
                   tile
                   style="height:100%; background-color:#3FCE32;"
                 >
-                  <v-btn text large class="text-center">입퇴실 모드</v-btn>
+                  <div style="height:100%;">{{year}}년 {{month}}월 {{day}}일 {{currentTime}}</div>
                 </v-card>
               </v-col>
-              <v-col
+              <!-- <v-col
                 cols="4"
                 sm="4"
                 style="height:100%;"
               >
                 <v-card
-                  class=" d-flex align-center"
+                  class=" d-flex align-center justify-center"
                   outlined
                   tile
                   style="height:100%; background-color:#FFE651;"
                 >
                   <v-btn text large class="text-center">1:1 모드</v-btn>
                 </v-card>
-              </v-col>
+              </v-col> -->
               <v-col
                 cols="4"
                 sm="4"
                 style="height:100%;"
               >
                 <v-card
-                  class=" d-flex align-center"
+                  class="white--text d-flex align-center justify-center"
                   outlined
                   tile
-                  style="height:100%; background-color:#ABABAB;"
+                  style="height:100%; background-color:#FFE651;"
                 >
-                  <v-btn text large class="text-center" @click="addAttendanceStudent">입실학생추가</v-btn>
+                  <v-btn v-if="frontState===1" text large class="text-center" @click="addAttendanceStudent" style="height:100%;">입실학생추가</v-btn>
+                  <v-btn v-else-if="frontState===2" text large class="text-center" @click="addAttendanceStudent" style="height:100%;">퇴실학생추가</v-btn>
                 </v-card>
               </v-col>
             </v-row>
@@ -139,20 +140,29 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import http from '../http-common'
 export default {
-  name: "Home",
+  name: "InAndOut",
   components: {
   },
-  data(){
-    return{
+  data() {
+    return {
       currentStudentList: [],
       studentList: [],
       page: 1,
       items: [],
       loading: false,
-      studentIndex: 0
+      studentIndex: 0,
+      timer: '',
+      year: '',
+      month: '',
+      day: '',
+      currentTime : ''
     }
+  },
+  computed: {
+    ...mapState(['frontState'])
   },
   methods: {
     prevPage () {
@@ -176,10 +186,11 @@ export default {
       let student = null
       for(let i = 0 ; i < this.studentList.length ; i++) {
         if(this.studentList[i].face_id === randomFaceId){
-            student = this.studentList[i];
-            break;
+            student = this.studentList[i]
+            break
         }
       }
+      console.log("student")
       console.log(student)
       if(student !== null && student.attendance_state === null) {
         student.attendance_state = "입실완료"
@@ -193,7 +204,7 @@ export default {
         fdata.append('leaving_time', student.leaving_time)
         fdata.append('attendance_state', student.attendance_state)
         http
-          .put('/student/updateAttendance', student)
+          .put('/student/updateAttendance', fdata)
           .then(
             response => {
               console.log(response.data.message)
@@ -230,24 +241,38 @@ export default {
       }
     },
     getRandomIntInclusive(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
+      min = Math.ceil(min)
+      max = Math.floor(max)
       return Math.floor(Math.random() * (max - min + 1)) + min; //최댓값도 포함, 최솟값도 포함
-    }
+    },
+    setTime : function() {
+      var self = this
+      let moment = require('moment'); 
+      this.timer = setInterval(function() {
+        self.currentTime = moment().format('LTS')
+        self.year = moment().format('YYYY')
+        self.month = moment().format('MM')
+        self.day = moment().format('DD')
+      }, 1000);
+    },
   },
   mounted() {
+    this.setTime(),
     http
       .get('/student/studentduringlist')
       .then(
         response => {
           console.log(response.data.message)
-          this.studentList = response.data.result;
+          this.studentList = response.data.result
         }
       )
       .catch(err => console.log(err))
       .finally(
       )
-  }
+  },
+  beforeDestroy () {
+    clearInterval(this.timer)
+  },
 };
 </script>
 
@@ -256,6 +281,8 @@ export default {
   margin: 0;
   width: 100%;
   height: 100%;
+  min-height: 100%;
+  min-width: 100%;
   overflow: hidden;
 }
 </style>
