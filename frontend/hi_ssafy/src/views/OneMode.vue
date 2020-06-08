@@ -1,6 +1,6 @@
 <template>
   
-    <v-app id="app" W>
+    <v-app id="app">
       <v-app-bar app color="#000839" dark>
         <v-toolbar-title>1인 모드</v-toolbar-title>
       </v-app-bar>
