@@ -1,8 +1,9 @@
 <template>
-  <v-app id="app" W>
-    <v-app-bar app color="#000839" dark>
-      <v-toolbar-title>1인 모드</v-toolbar-title>
-    </v-app-bar>
+  
+    <v-app id="app">
+      <v-app-bar app color="#000839" dark>
+        <v-toolbar-title>1인 모드</v-toolbar-title>
+      </v-app-bar>
 
     <v-content id="menus">
       <v-row>
@@ -194,8 +195,11 @@ export default {
 
     clear() {
       this.dialog = false;
-      this.outtime = null;
-    },
+      this.earlyleave.division = "조퇴";
+      this.earlyleave.sort = "병원";
+      this.earlyleave.reason= "";
+      this.earlyleave.leaving_time = null;
+        },
     addAttendanceStudent() {
       let randomFaceId = String(this.getRandomIntInclusive(0, 23));
       let student = null;
@@ -265,8 +269,6 @@ export default {
 </script>
 
 <style>
-#menus {
-}
 #app {
   background-color: #00a8cc;
 }
