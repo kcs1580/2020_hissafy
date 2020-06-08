@@ -122,7 +122,7 @@ order by student_id;
 drop table earlyleave;
 create table earlyleave(
     e_id int auto_increment,
-    earlyleave_date varchar(20),
+    earlyleave_date varchar(40),
     student_id varchar(30) not null,
     division varchar(10),
     sort varchar(10), 
