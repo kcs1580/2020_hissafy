@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.hissafy.dto.EarlyLeaveDto;
+import com.web.hissafy.dto.StudentDto;
 import com.web.hissafy.repopsitory.IEarlyLeaveRepository;
 import com.web.hissafy.repopsitory.IStudentRepository;
 
@@ -50,10 +51,13 @@ public class EarlyLeaveServiceImpl implements IEarlyLeaveService {
 	@Override
 	public List<EarlyLeaveDto> earlyDateList(String date) {
 		List<EarlyLeaveDto> list = repo.earlyDateList(date);
-//		for (int i = 0; i < list.size(); i++) {
-//			EarlyLeaveDto dto  = list.get(i);	
-//			dto.setStudent_name(sRepo.studentInfo(dto.getStudent_id()).getName());
-//		}
+		System.out.println(list.size());
+		for (int i = 0; i < list.size(); i++) {
+			
+			EarlyLeaveDto dto  = list.get(i);	
+			StudentDto student = sRepo.studentInfo(dto.getStudent_id());
+			dto.setStudent_name(student.getName());
+		}
 		
 		return list;
 	}

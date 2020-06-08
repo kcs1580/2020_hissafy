@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import http from "../http-common.js";
 export default {
   components: {},
   data() {
@@ -49,18 +50,17 @@ export default {
         {
           text: "날짜",
           align: "left",
-          value: "date"
+          value: "attendance_date"
         },
         {
           text: "학번",
-          value: "id"
+          value: "student_id"
         },
-        { text: "기수", value: "group_num" },
-        { text: "반", value: "class" },
-        { text: "이름", value: "name" },
+
+        { text: "이름", value: "student_name" },
         { text: "출석시간", value: "attendance_time" },
         { text: "퇴실시간", value: "leaving_time" },
-        { text: "사진", value: "face_id" }
+        { text: "상태", value: "attendance_state" }
       ],
       students: []
     };
@@ -73,22 +73,23 @@ export default {
   },
 
   created() {
-    this.initialize();
+    setInterval(() => {
+      this.initialize();
+    }, 1000);
   },
 
   methods: {
     initialize() {
-      this.students = [
-        {
-          id: "0211062",
-          group_num: 2,
-          area: "광주",
-          class: 1,
-          name: "이하연",
-          state: "재학",
-          face_id: "1111"
-        }
-      ];
+      http
+        .get("/student/Attendance/" + this.date)
+        .then(response => {
+          this.students = response.data.list;
+          console.log(this.students);
+        })
+        .catch(() => {
+          this.error = true;
+        })
+        .finally(() => (this.loading = false));
     },
     changeDate() {
       // 날짜별 요청
