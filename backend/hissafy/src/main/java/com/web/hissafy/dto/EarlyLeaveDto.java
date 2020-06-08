@@ -4,6 +4,34 @@ public class EarlyLeaveDto {
 
 	private String student_id;
 	private String earlyleave_date;
+	private String division;
+	private String sort;
+	private String reason;
+	private String leaving_time;
+	private String approval_state;
+	private String student_name;
+	
+	public String getStudent_name() {
+		return student_name;
+	}
+
+	public void setStudent_name(String student_name) {
+		this.student_name = student_name;
+	}
+
+	public EarlyLeaveDto(String student_id, String earlyleave_date, String division, String sort, String reason,
+			String leaving_time, String approval_state, String student_name) {
+		super();
+		this.student_id = student_id;
+		this.earlyleave_date = earlyleave_date;
+		this.division = division;
+		this.sort = sort;
+		this.reason = reason;
+		this.leaving_time = leaving_time;
+		this.approval_state = approval_state;
+		this.student_name = student_name;
+	}
+
 	public EarlyLeaveDto(String student_id, String earlyleave_date, String division, String sort, String reason,
 			String leaving_time, String approval_state) {
 		super();
@@ -15,24 +43,9 @@ public class EarlyLeaveDto {
 		this.leaving_time = leaving_time;
 		this.approval_state = approval_state;
 	}
-	public EarlyLeaveDto(String student_id, String earlyleave_date) {
-		super();
-		this.student_id = student_id;
-		this.earlyleave_date = earlyleave_date;
-	}
-	public String getEarlyleave_date() {
-		return earlyleave_date;
-	}
+	
 
-	public void setEarlyleave_date(String earlyleave_date) {
-		this.earlyleave_date = earlyleave_date;
-	}
 
-	private String division;
-	private String sort;
-	private String reason;
-	private String leaving_time;
-	private String approval_state;
 
 	public EarlyLeaveDto(String student_id, String division, String sort, String reason, String leaving_time,
 			String approval_state) {
@@ -50,7 +63,18 @@ public class EarlyLeaveDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	public EarlyLeaveDto(String student_id, String earlyleave_date) {
+		super();
+		this.student_id = student_id;
+		this.earlyleave_date = earlyleave_date;
+	}
+	public String getEarlyleave_date() {
+		return earlyleave_date;
+	}
+
+	public void setEarlyleave_date(String earlyleave_date) {
+		this.earlyleave_date = earlyleave_date;
+	}
 	public String getStudent_id() {
 		return student_id;
 	}
@@ -103,7 +127,7 @@ public class EarlyLeaveDto {
 	public String toString() {
 		return "EarlyLeaveDto [student_id=" + student_id + ", earlyleave_date=" + earlyleave_date + ", division="
 				+ division + ", sort=" + sort + ", reason=" + reason + ", leaving_time=" + leaving_time
-				+ ", approval_state=" + approval_state + "]";
+				+ ", approval_state=" + approval_state + ", student_name=" + student_name + "]";
 	}
 
 }

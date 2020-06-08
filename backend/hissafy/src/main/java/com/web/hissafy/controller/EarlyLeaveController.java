@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.web.hissafy.dto.EarlyLeaveDto;
 import com.web.hissafy.service.IEarlyLeaveService;
+import com.web.hissafy.service.IStudentService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -99,8 +100,11 @@ public class EarlyLeaveController {
 	@ApiOperation(value = "조퇴 신청 날짜별 리스트 조회", response = List.class)
 	private @ResponseBody ResponseEntity<Map<String,Object>> listEarlyleave(@PathVariable String earlyleave_date){
 		ResponseEntity<Map<String,Object>> resEntity= null;
+		System.out.println(earlyleave_date);
 		try {
+			
 			List<EarlyLeaveDto> list = eSer.earlyDateList(earlyleave_date);
+			
 			System.out.println(list.size());
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("resmsg", "조퇴 신청 리스트 조회 성공");

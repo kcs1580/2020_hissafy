@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import StudentManagement from "../views/StudentManagement"
 import StudentEdit from "../views/StudentEdit"
 import AttendanceCheck from "../views/AttendanceCheck"
+import EarlyLeaveCheck from "../views/EarlyLeaveCheck"
 import NoticeList from "../views/NoticeList"
 import NoticeInfo from "../views/NoticeInfo"
 import AddNotice from "../views/AddNotice"
@@ -38,6 +39,11 @@ const routes = [
     component:AttendanceCheck
   },
   {
+    path:"/earlyLeaveCheck",
+    name:" EarlyLeaveCheck",
+    component: EarlyLeaveCheck
+  },
+  {
     path:"/noticeList",
     name:"NoticeList",
     component:NoticeList
@@ -62,15 +68,6 @@ const routes = [
     name :StudentEdit,
     component:StudentEdit
   }
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
 ];
 
 const router = new VueRouter({
