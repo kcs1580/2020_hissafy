@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.hissafy.dto.AttendanceDto;
+import com.web.hissafy.dto.StudentDto;
 import com.web.hissafy.repopsitory.IAttendanceRepository;
+import com.web.hissafy.repopsitory.IStudentRepository;
 
 @Service
 public class AttendanceServiceImpl implements IAttendanceService {
 	@Autowired
 	IAttendanceRepository repo;
 
+	@Autowired 
+	IStudentRepository sRepo;
 	@Override
 	public int attendanceInsert(AttendanceDto attendance) {
 		return repo.attendanceInsert(attendance);
@@ -39,7 +43,13 @@ public class AttendanceServiceImpl implements IAttendanceService {
 	}
 	@Override
 	public List<AttendanceDto> attendanceDateList(String date) {
-		return repo.attendanceDateList(date);
+		List<AttendanceDto> list = repo.attendanceDateList(date);
+		for (int i = 0; i < list.size(); i++) {
+			AttendanceDto dto = list.get(i);
+			StudentDto student = sRepo.studentInfo(dto.getStudent_id());
+			dto.setStudent_name(student.getName());
+		}
+		return list;
 	}
 
 }

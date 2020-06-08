@@ -10,7 +10,27 @@ public class AttendanceDto {
 	private String attendance_time;
 	private String leaving_time;
 	private String attendance_state;
+	private String student_name;
 	
+	public AttendanceDto(String student_id, String attendance_date, String attendance_time, String leaving_time,
+			String attendance_state, String student_name) {
+		super();
+		this.student_id = student_id;
+		this.attendance_date = attendance_date;
+		this.attendance_time = attendance_time;
+		this.leaving_time = leaving_time;
+		this.attendance_state = attendance_state;
+		this.student_name = student_name;
+	}
+
+	public String getStudent_name() {
+		return student_name;
+	}
+
+	public void setStudent_name(String student_name) {
+		this.student_name = student_name;
+	}
+
 	public AttendanceDto() {
 		super();
 	}
