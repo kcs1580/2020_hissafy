@@ -91,22 +91,22 @@ select * from attendance;
 insert into attendance
 (student_id, attendance_date, attendance_time, leaving_time, attendance_state)
 values
-("0211002","2020-06-03",null,null,null),
-("0211003","2020-06-03",null,null,null),
-("0211005","2020-06-03",null,null,null),
-("0211006","2020-06-03",null,null,null),
-("0211007","2020-06-03",null,null,null),
-("0211008","2020-06-03",null,null,null),
-("0211009","2020-06-03",null,null,null),
-("0211010","2020-06-03",null,null,null),
-("0211011","2020-06-03",null,null,null),
-("0211013","2020-06-03",null,null,null),
-("0211014","2020-06-03",null,null,null),
-("0211015","2020-06-03",null,null,null),
-("0211016","2020-06-03",null,null,null),
-("0211018","2020-06-03",null,null,null),
-("0211021","2020-06-03",null,null,null),
-("0211024","2020-06-03",null,null,null);
+("0211002","2020-06-08","08:30",null,"정상"),
+("0211003","2020-06-08","08:50",null,"정상"),
+("0211005","2020-06-08","09:11",null,"지각"),
+("0211006","2020-06-08","08:33",null,"정상"),
+("0211007","2020-06-08","08:40",null,"정상"),
+("0211008","2020-06-08","08:35",null,"정상"),
+("0211009","2020-06-08","08:40",null,"정상"),
+("0211010","2020-06-08","09:00",null,"지각"),
+("0211011","2020-06-08","08:39",null,"정상"),
+("0211013","2020-06-08","08:58",null,"정상"),
+("0211014","2020-06-08","08:33",null,"정상"),
+("0211015","2020-06-08","08:35",null,"정상"),
+("0211016","2020-06-08","08:33",null,"정상"),
+("0211018","2020-06-08","09:01",null,"지각"),
+("0211021","2020-06-08","08:36",null,"정상"),
+("0211024","2020-06-08","08:36",null,"정상");
 
 select student_id
 		from Student
@@ -132,7 +132,11 @@ create table earlyleave(
     primary key(e_id)
 )DEFAULT CHARSET=UTF8;
 select * from earlyleave;
-insert into earlyleave value("0211730", "조퇴", "병원", "감기진료", "14:00", "승인");
+drop table earlyleave;
+insert into earlyleave (earlyleave_date,student_id,division,sort,reason,leaving_time,approval_state)
+values("2020-06-08" ,"0211021", "조퇴", "병원", "감기진료", "14:00", "승인대기")
+,("2020-06-08" ,"0211006", "조퇴", "병원", "감기진료", "14:00", "승인대기")
+,("2020-06-08" ,"0211024", "조퇴", "병원", "감기진료", "14:00", "승인대기");
 
 drop table notice;
 create table notice(

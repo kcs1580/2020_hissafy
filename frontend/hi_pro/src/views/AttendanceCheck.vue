@@ -50,18 +50,17 @@ export default {
         {
           text: "날짜",
           align: "left",
-          value: "date"
+          value: "attendance_date"
         },
         {
           text: "학번",
-          value: "id"
+          value: "student_id"
         },
-        { text: "기수", value: "group_num" },
-        { text: "반", value: "class" },
-        { text: "이름", value: "name" },
+
+        { text: "이름", value: "student_name" },
         { text: "출석시간", value: "attendance_time" },
         { text: "퇴실시간", value: "leaving_time" },
-        { text: "사진", value: "face_id" }
+        { text: "상태", value: "attendance_state" }
       ],
       students: []
     };
