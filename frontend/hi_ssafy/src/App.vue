@@ -48,8 +48,8 @@ export default {
   },
   methods: {
     ...mapActions(["changeFrontState"]),
-    /*setTime : function() {
-      console.log(this.times)
+    setTime : function() {
+      // console.log(this.times)
       var self = this
       let moment = require('moment'); 
       this.timer = setInterval(function() {
@@ -59,17 +59,17 @@ export default {
         self.currentTime = tt
         let hh = parseInt(moment().format('HH'))
         let mm = parseInt(moment().format('mm'))
-        console.log(self.currentTime)
+        // console.log(self.currentTime)
         let current_time = hh*60 + mm
-        console.log("현재시간 환산" + current_time)
+        // console.log("현재시간 환산" + current_time)
         let attendance_start = self.times.attendance_start_h*60 + self.times.attendance_start_m
-        console.log("입실시작시간 환산" + attendance_start)
+        // console.log("입실시작시간 환산" + attendance_start)
         let attendance_end = self.times.attendance_end_h*60 + self.times.attendance_end_m
-        console.log("입실끝시간 환산" + attendance_end)
+        // console.log("입실끝시간 환산" + attendance_end)
         let leaving_start = self.times.leaving_start_h*60 + self.times.leaving_start_m
-        console.log("퇴실시작시간 환산" + leaving_start)
+        // console.log("퇴실시작시간 환산" + leaving_start)
         let leaving_end = self.times.leaving_end_h*60 + self.times.leaving_end_m
-        console.log("퇴실끝시간 환산" + leaving_end)
+        // console.log("퇴실끝시간 환산" + leaving_end)
         const params = {
           cs: 0
         }
@@ -87,7 +87,7 @@ export default {
           self.changeFrontState(params)
         }
       }, 1000);
-    }*/
+    }
   }
 };
 </script>

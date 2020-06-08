@@ -7,14 +7,14 @@ export default new Vuex.Store({
   state: {
     frontState: 0,
     times: {
-      attendance_start_h: 1,
-      attendance_start_m: 28,
-      attendance_end_h: 1,
-      attendance_end_m: 29,
-      leaving_start_h: 1,
-      leaving_start_m: 30,
-      leaving_end_h: 1,
-      leaving_end_m: 31 
+      attendance_start_h: 21,
+      attendance_start_m: 58,
+      attendance_end_h: 22,
+      attendance_end_m: 5,
+      leaving_start_h: 22,
+      leaving_start_m: 10,
+      leaving_end_h: 22,
+      leaving_end_m: 15 
     }
   },
   mutations: {
@@ -24,7 +24,7 @@ export default new Vuex.Store({
   },
   actions: {
     changeFrontState({commit }, params) {
-      window.console.log(params.cs)
+      // window.console.log(params.cs)
       commit("changeFrontState",params.cs);
       // localStorage.setItem("modalText", '회원가입이 완료되었습니다.');
       // state.modalText = localStorage.getItem("modalText");

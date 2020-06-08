@@ -91,7 +91,7 @@
                         cols="3"
                         sm="3"
                       >
-                      <v-img src="../assets/student.jpg" aspect-ratio="2.0" height="100%"></v-img>
+                      <v-img :src="`http://localhost:8080/face/`+item.student_id+`.JPG`" aspect-ratio="1.7" height="100%"></v-img>
                       
                       </v-col>
                       <v-col
@@ -192,7 +192,7 @@ export default {
       }
       console.log("student")
       console.log(student)
-      if(student !== null && student.attendance_state === null) {
+      if(student !== null && student.attendance_state === null && this.frontState === 1) {
         student.attendance_state = "입실완료"
         student.attendance_time = new Date()
         this.currentStudentList.unshift(student)
@@ -214,7 +214,7 @@ export default {
           .finally(
           )
 
-      } else if(student !== null && student.attendance_state === "입실완료") {
+      } else if(student !== null && student.attendance_state === "입실완료" && this.frontState === 2) {
         student.attendance_state = "퇴실완료"
         student.leaving_time = new Date()
         this.currentStudentList.unshift(student)
@@ -255,6 +255,23 @@ export default {
         self.day = moment().format('DD')
       }, 1000);
     },
+    imgSrc(id) {
+      let flag = false
+      for(let i = 0 ; i < this.studentList.length ; i++) {
+        if(this.studentList[i].student_id === id){
+            flag = true
+            break
+        }
+      }
+      let imgsrc = null
+      if(flag === true) {
+        imgsrc = "../assets/face/"+id+".JPG"
+      } else {
+        imgsrc = "../assets/student.jpg"
+      }
+      console.log(imgsrc)
+      return imgsrc
+    }
   },
   mounted() {
     this.setTime(),
