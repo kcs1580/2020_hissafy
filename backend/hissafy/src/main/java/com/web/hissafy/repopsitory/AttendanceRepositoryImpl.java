@@ -37,4 +37,10 @@ public class AttendanceRepositoryImpl implements IAttendanceRepository{
 	public List<AttendanceDto> attendanceList() {
 		return session.selectList("hissafy.attendance.selectList");
 	}
+
+	@Override
+	public List<AttendanceDto> attendanceDateList(String date) {
+		// TODO Auto-generated method stub
+		return session.selectList("hissafy.attendance.selectDateList", date);
+	}
 }

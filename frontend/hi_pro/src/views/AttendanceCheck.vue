@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import http from "../http-common.js";
 export default {
   components: {},
   data() {
@@ -78,17 +79,16 @@ export default {
 
   methods: {
     initialize() {
-      this.students = [
-        {
-          id: "0211062",
-          group_num: 2,
-          area: "광주",
-          class: 1,
-          name: "이하연",
-          state: "재학",
-          face_id: "1111"
-        }
-      ];
+      http
+        .get("/student/Attendance/" + this.date)
+        .then(response => {
+          this.students = response.data.list;
+          console.log(this.students);
+        })
+        .catch(() => {
+          this.error = true;
+        })
+        .finally(() => (this.loading = false));
     },
     changeDate() {
       // 날짜별 요청
