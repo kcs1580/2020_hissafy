@@ -22,6 +22,7 @@ import com.web.hissafy.service.IAttendanceService;
 import com.web.hissafy.service.IStudentService;
 import com.web.hissafy.dto.AttendanceDto;
 import com.web.hissafy.dto.DuringStudentDto;
+import com.web.hissafy.dto.EarlyLeaveDto;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -35,6 +36,24 @@ public class StudentController {
 
 	@Autowired
 	IAttendanceService aSer;
+	
+	@GetMapping("/infoAttendance/{student_id}")
+	@ApiOperation(value = "학번으로 오늘 출석 조회", response = EarlyLeaveDto.class)
+	private @ResponseBody ResponseEntity<Map<String,Object>> infoEarlyleave(@PathVariable String student_id){
+		ResponseEntity<Map<String,Object>> resEntity= null;
+		try {
+			AttendanceDto attendance = aSer.attendanceInfo(student_id);
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("resmsg", "출석 조회 성공");
+			map.put("attendance",attendance);
+			resEntity = new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+		}catch (RuntimeException e) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("resmsg", "출석 조회 실패");
+			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		}
+		return resEntity;
+	}
 
 	@PutMapping("/updateAttendance")
 	@ApiOperation(value = "attendance 정보를 받아 입퇴실 처리 서비스")

@@ -6,12 +6,29 @@
       </v-app-bar>
 
     <v-content id="menus">
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-container></v-container>
-        </v-col>
-        <v-col cols="12" sm="6">
+        <v-row>
+           <v-col cols="12" sm="2">
+           </v-col>
+        <v-col cols="12" sm="4">
           <v-container>
+
+<br>
+<v-card class="mx-auto" max-width="400px">
+              <v-card-text>
+               
+                 <img src="../assets/bbang.jpg" height="410px" width="320px"> 
+                
+              </v-card-text>
+              <v-card-actions class="justify-center">
+                <v-btn x-large="">2기 광주 1반 방준영</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-container>
+        </v-col>
+          
+        <v-col cols="12" sm="4">
+          <v-container>                
+            <v-col cols="12">
             <v-card class="mx-auto" max-width="150">
               <v-card-text>
                 <p class="display-1 text--primary">
@@ -107,10 +124,10 @@
                 </v-dialog>
               </v-card-actions>
             </v-card>
+            </v-col>
 
-            <v-row>
-              <v-col cols="12" sm="2"></v-col>
-              <v-col cols="12" sm="4">
+
+            <v-col cols="12">        
                 <v-card class="mx-auto" max-width="150">
                   <v-card-text>
                     <p class="display-1 text--primary">
@@ -119,13 +136,14 @@
                   </v-card-text>
                   <v-card-actions class="justify-center">
                     <div align="center">
-                      <v-btn dark x-large color="#005082" @click="addAttendanceStudent">입실하기</v-btn>
+                      <v-btn dark x-large color="#005082" @click="alertIn">입실하기</v-btn>
                     </div>
                   </v-card-actions>
                 </v-card>
-              </v-col>
+            </v-col>
+           
 
-              <v-col cols="12" sm="4">
+           <v-col cols="12">
                 <v-card class="mx-auto" max-width="150">
                   <v-card-text>
                     <p class="display-1 text--primary">
@@ -134,16 +152,17 @@
                   </v-card-text>
                   <v-card-actions class="justify-center">
                     <div align="center">
-                      <v-btn dark x-large color="#005082" @click="addAttendanceStudent">퇴실하기</v-btn>
+                      <v-btn dark x-large color="#005082" @click="alertOut">퇴실하기</v-btn>
                     </div>
                   </v-card-actions>
                 </v-card>
-              </v-col>
-              <v-col cols="12" sm="2"></v-col>
-            </v-row>
+           </v-col>
           </v-container>
         </v-col>
-      </v-row>
+         <v-col cols="12" sm="2">
+         </v-col>
+        </v-row>
+                          
     </v-content>
 
     <v-footer color="#000839" app>
@@ -159,6 +178,7 @@ export default {
   data() {
     return {
       studentList: [],
+      student:"",
       faceid: "",
       dialog: false,
       modal2: false,
@@ -200,56 +220,48 @@ export default {
       this.earlyleave.reason= "";
       this.earlyleave.leaving_time = null;
         },
-    addAttendanceStudent() {
-      let randomFaceId = String(this.getRandomIntInclusive(0, 23));
-      let student = null;
-      for (let i = 0; i < this.studentList.length; i++) {
-        if (this.studentList[i].face_id === randomFaceId) {
-          student = this.studentList[i];
-          break;
-        }
-      }
-      console.log(student);
-      if (student !== null && student.attendance_state === null) {
-        student.attendance_state = "입실완료";
-        student.attendance_time = new Date();
-        this.currentStudentList.unshift(student);
-        console.log(student.name + " " + student.attendance_state);
+        updateIn() {
+          if (true) {
+        this.student.attendance_state = "입실완료";
+        this.student.attendance_time = new Date();
+        this.currentStudentList.unshift(this.student);
+        console.log(this.student.name + " " + this.student.attendance_state);
         let fdata = new FormData();
-        fdata.append("student_id", student.student_id);
-        fdata.append("attendance_date", student.attendance_date);
-        fdata.append("attendance_time", student.attendance_time);
-        fdata.append("leaving_time", student.leaving_time);
-        fdata.append("attendance_state", student.attendance_state);
+        fdata.append("student_id", this.student.student_id);
+        fdata.append("attendance_date", this.student.attendance_date);
+        fdata.append("attendance_time", this.student.attendance_time);
+        fdata.append("leaving_time", this.student.leaving_time);
+        fdata.append("attendance_state", this.student.attendance_state);
         http
           .put("/student/updateAttendance", fdata)
           .then(response => {
+            this.alertIn();
             console.log(response.data.message);
           })
           .catch(err => console.log(err))
           .finally();
-      } else if (student !== null && student.attendance_state === "입실완료") {
-        student.attendance_state = "퇴실완료";
-        student.leaving_time = new Date();
-        this.currentStudentList.unshift(student);
-        console.log(student.name + " " + student.attendance_state);
-        let fdata = new FormData();
-        fdata.append("student_id", student.student_id);
-        fdata.append("attendance_date", student.attendance_date);
-        fdata.append("attendance_time", student.attendance_time);
-        fdata.append("leaving_time", student.leaving_time);
-        fdata.append("attendance_state", student.attendance_state);
-        http
-          .put("/student/updateAttendance", fdata)
-          .then(response => {
-            console.log(response.data.message);
-          })
-          .catch(err => console.log(err))
-          .finally();
-      } else if (student !== null) {
-        console.log(student.name + "은(는) 이미 입퇴실 처리 되었습니다.");
       }
-    },
+          
+        
+        },
+        updateOut() {
+          
+        },
+    alertIn() {
+     
+    this.$alert(
+      "입실이 완료 되었습니다.",
+      "Success",
+      "success"
+    ).then(() => console.log("Closed"));
+  },
+  alertOut() {
+    this.$alert(
+      "퇴실이 완료 되었습니다.",
+      "Success",
+      "success"
+    ).then(() => console.log("Closed"));
+  },
     login() {},
     logout() {}
   },

@@ -9,11 +9,13 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import vueMoment from 'vue-moment';
+import VueSimpleAlert from "vue-simple-alert";
 
 Vue.use(vueMoment)
 Vue.use(InfiniteScroll)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(VueSimpleAlert);
 
 Vue.config.productionTip = false;
 
