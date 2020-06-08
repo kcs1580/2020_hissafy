@@ -32,7 +32,7 @@
                         tile
                         style="height:100%; background-color:#FFE651;"
                         >
-                            <v-btn text large class="text-center" @click="goOneMode" style="height:100%;">1인모드[입실,퇴실,조퇴,외출]</v-btn>
+                            <div class="text-center" @click="goOneMode" style="height:100%; cursor:pointer;">1인모드[입실,퇴실,조퇴,외출]</div>
                         </v-card>
                     </v-col>
                 </v-row>
