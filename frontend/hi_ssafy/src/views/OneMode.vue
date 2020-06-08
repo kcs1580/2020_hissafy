@@ -195,8 +195,11 @@ export default {
 
     clear() {
       this.dialog = false;
-      this.outtime = null;
-    },
+      this.earlyleave.division = "조퇴";
+      this.earlyleave.sort = "병원";
+      this.earlyleave.reason= "";
+      this.earlyleave.leaving_time = null;
+        },
     addAttendanceStudent() {
       let randomFaceId = String(this.getRandomIntInclusive(0, 23));
       let student = null;
