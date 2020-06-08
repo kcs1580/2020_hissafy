@@ -37,5 +37,9 @@ public class AttendanceServiceImpl implements IAttendanceService {
 	public List<AttendanceDto> attendanceList() {
 		return repo.attendanceList();
 	}
+	@Override
+	public List<AttendanceDto> attendanceDateList(String date) {
+		return repo.attendanceDateList(date);
+	}
 
 }

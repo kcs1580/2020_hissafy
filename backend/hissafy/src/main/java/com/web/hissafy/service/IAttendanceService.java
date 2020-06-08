@@ -14,4 +14,6 @@ public interface IAttendanceService {
 	public AttendanceDto attendanceInfo(String student_id);
 
 	public List<AttendanceDto> attendanceList();
+	
+	public List<AttendanceDto> attendanceDateList(String date);
 }
