@@ -32,7 +32,7 @@
 
 	<select id="selectOne" parameterType="EarlyLeaveDto"
 		resultType="EarlyLeaveDto">
-		select student_id, division, sort, reason, leaving_time,
+		select student_id,earlyleave_date, division, sort, reason, leaving_time,
 		approval_state
 		from earlyleave
 		where
@@ -45,7 +45,7 @@
 		from earlyleave
 	</select>
 	<select id="selectDateList" parameterType="string" resultType="EarlyLeaveDto" >
-		select student_id, division,
+		select student_id, earlyleave_date,division,
 		sort, reason, leaving_time, approval_state
 		from earlyleave
 		where earlyleave_date=#{earlyleave_date}
