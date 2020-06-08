@@ -74,7 +74,9 @@ export default {
   },
 
   created() {
-    this.initialize();
+    setInterval(() => {
+      this.initialize();
+    }, 1000);
   },
 
   methods: {
