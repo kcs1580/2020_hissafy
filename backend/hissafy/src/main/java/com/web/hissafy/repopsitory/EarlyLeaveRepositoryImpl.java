@@ -16,6 +16,7 @@ public class EarlyLeaveRepositoryImpl implements IEarlyLeaveRepository {
 	@Override
 	public int earlyInsert(EarlyLeaveDto earlyleave) {
 		// TODO Auto-generated method stub
+		System.out.println("repo  "+earlyleave.getEarlyleave_date());
 		return session.insert("hissafy.earlyleave.insert",earlyleave);
 	}
 

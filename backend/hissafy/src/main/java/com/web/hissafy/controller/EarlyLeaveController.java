@@ -38,6 +38,10 @@ public class EarlyLeaveController {
 	private @ResponseBody ResponseEntity<Map<String, Object>> registerEarlyleave(
 			@RequestBody EarlyLeaveDto earlyleave) {
 		ResponseEntity<Map<String, Object>> resEntity = null;
+		SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
+		String earlyleave_date = date_format.format(new Date());
+		earlyleave.setEarlyleave_date(earlyleave_date);
+		System.out.println(earlyleave.getEarlyleave_date());
 		int cnt = eSer.earlyInsert(earlyleave);
 		if (cnt > 0) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -136,7 +140,7 @@ public class EarlyLeaveController {
 	private @ResponseBody ResponseEntity<Map<String,Object>> deleteEarlyleave(@PathVariable String student_id){
 		ResponseEntity<Map<String,Object>> resEntity= null;
 		try {
-			SimpleDateFormat date_format = new SimpleDateFormat("yyyy-mm-dd");
+			SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
 			String earlyleave_date = date_format.format(new Date());
 			EarlyLeaveDto earlyleave = eSer.earlyInfo(new EarlyLeaveDto(student_id,earlyleave_date));
 			Map<String,Object> map = new HashMap<String,Object>();

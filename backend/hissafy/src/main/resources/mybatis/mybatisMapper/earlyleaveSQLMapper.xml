@@ -8,7 +8,7 @@
 		(student_id, earlyleave_date, division, sort, reason, leaving_time, approval_state)
 		values(
 		#{student_id},
-		${earlyleave_date},
+		#{earlyleave_date},
 		#{division},
 		#{sort},
 		#{reason},
@@ -40,7 +40,7 @@
 	</select>
 	
 	<select id="selectList" resultType="EarlyLeaveDto">
-		select student_id, division,
+		select student_id,earlyleave_date, division,
 		sort, reason, leaving_time, approval_state
 		from earlyleave
 	</select>
