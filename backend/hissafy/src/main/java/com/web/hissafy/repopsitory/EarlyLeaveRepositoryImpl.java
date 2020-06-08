@@ -16,6 +16,7 @@ public class EarlyLeaveRepositoryImpl implements IEarlyLeaveRepository {
 	@Override
 	public int earlyInsert(EarlyLeaveDto earlyleave) {
 		// TODO Auto-generated method stub
+		System.out.println("repo  "+earlyleave.getEarlyleave_date());
 		return session.insert("hissafy.earlyleave.insert",earlyleave);
 	}
 
@@ -26,9 +27,9 @@ public class EarlyLeaveRepositoryImpl implements IEarlyLeaveRepository {
 	}
 
 	@Override
-	public EarlyLeaveDto earlyInfo(String student_id) {
+	public EarlyLeaveDto earlyInfo(EarlyLeaveDto earlyleave) {
 		// TODO Auto-generated method stub
-		return session.selectOne("hissafy.earlyleave.selectOne",student_id);
+		return session.selectOne("hissafy.earlyleave.selectOne",earlyleave);
 	}
 
 	@Override
@@ -41,6 +42,11 @@ public class EarlyLeaveRepositoryImpl implements IEarlyLeaveRepository {
 	public int earlyDelete(String student_id) {
 		// TODO Auto-generated method stub
 		return session.delete("hissafy.earlyleave.delete",student_id);
+	}
+
+	@Override
+	public List<EarlyLeaveDto> earlyDateList(String date) {
+		return session.selectList("hissafy.earlyleave.selectDateList",date);
 	}
 
 }

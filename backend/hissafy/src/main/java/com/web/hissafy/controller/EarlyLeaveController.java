@@ -1,5 +1,7 @@
 package com.web.hissafy.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +38,10 @@ public class EarlyLeaveController {
 	private @ResponseBody ResponseEntity<Map<String, Object>> registerEarlyleave(
 			@RequestBody EarlyLeaveDto earlyleave) {
 		ResponseEntity<Map<String, Object>> resEntity = null;
+		SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
+		String earlyleave_date = date_format.format(new Date());
+		earlyleave.setEarlyleave_date(earlyleave_date);
+		System.out.println(earlyleave.getEarlyleave_date());
 		int cnt = eSer.earlyInsert(earlyleave);
 		if (cnt > 0) {
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -50,12 +56,12 @@ public class EarlyLeaveController {
 
 	}
 
-	@GetMapping("/infoearlyleave/{student_id}")
+	@GetMapping("/infoearlyleave/{student_id}/{earlyleave_date}")
 	@ApiOperation(value = "조퇴 신청 조회", response = EarlyLeaveDto.class)
-	private @ResponseBody ResponseEntity<Map<String,Object>> infoEarlyleave(@PathVariable String student_id){
+	private @ResponseBody ResponseEntity<Map<String,Object>> infoEarlyleave(@PathVariable String student_id, @PathVariable String earlyleave_date){
 		ResponseEntity<Map<String,Object>> resEntity= null;
 		try {
-			EarlyLeaveDto earlyleave = eSer.earlyInfo(student_id);
+			EarlyLeaveDto earlyleave = eSer.earlyInfo(new EarlyLeaveDto(student_id, earlyleave_date));
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("resmsg", "조퇴 신청 조회 성공");
 			map.put("earlyleave",earlyleave);
@@ -89,6 +95,25 @@ public class EarlyLeaveController {
 	}
 	
 	
+	@GetMapping("/earlyleavelist/{earlyleave_date}")
+	@ApiOperation(value = "조퇴 신청 날짜별 리스트 조회", response = List.class)
+	private @ResponseBody ResponseEntity<Map<String,Object>> listEarlyleave(@PathVariable String earlyleave_date){
+		ResponseEntity<Map<String,Object>> resEntity= null;
+		try {
+			List<EarlyLeaveDto> list = eSer.earlyDateList(earlyleave_date);
+			System.out.println(list.size());
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("resmsg", "조퇴 신청 리스트 조회 성공");
+			map.put("list",list);
+			resEntity = new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+		}catch (RuntimeException e) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("resmsg", "조퇴 신청 리스트 조회 실패");
+			resEntity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		}
+		return resEntity;
+	}
+	
 	
 	@PostMapping("/updateearlyleave")
 	@ApiOperation(value = "조퇴 신청 수정")
@@ -115,7 +140,9 @@ public class EarlyLeaveController {
 	private @ResponseBody ResponseEntity<Map<String,Object>> deleteEarlyleave(@PathVariable String student_id){
 		ResponseEntity<Map<String,Object>> resEntity= null;
 		try {
-			EarlyLeaveDto earlyleave = eSer.earlyInfo(student_id);
+			SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
+			String earlyleave_date = date_format.format(new Date());
+			EarlyLeaveDto earlyleave = eSer.earlyInfo(new EarlyLeaveDto(student_id,earlyleave_date));
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("resmsg", student_id+" 조퇴 신청 삭제 성공");
 			map.put("earlyleave",earlyleave);

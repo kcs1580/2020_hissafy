@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import InAndOut from "../views/InAndOut.vue";
+import Notice from "../views/Notice.vue";
 import OneMode from "../views/OneMode.vue";
 import register from "../views/register.vue"
 
@@ -9,8 +9,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "InAndOut",
-    component: InAndOut
+    name: "Notice",
+    component: Notice
   },
   {
     path: "/onemode",

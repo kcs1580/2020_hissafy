@@ -10,9 +10,11 @@ public interface IEarlyLeaveRepository {
 
 	public int earlyUpdate(EarlyLeaveDto earlyleave);
 
-	public EarlyLeaveDto earlyInfo(String student_id);
+	public EarlyLeaveDto earlyInfo(EarlyLeaveDto earlyleave);
 
 	public List<EarlyLeaveDto> earlyList();
+	
+	public List<EarlyLeaveDto> earlyDateList(String date);
 	
 	public int earlyDelete (String student_id);
 

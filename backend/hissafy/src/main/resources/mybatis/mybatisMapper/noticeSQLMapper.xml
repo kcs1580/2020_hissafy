@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hissafy.notice">
+	<insert id="insert" parameterType="NoticeDto">
+		insert into notice
+		(notice_title, notice_img, start_date, end_date, reg_date)
+		values(
+		#{notice_title},
+		#{notice_img},
+		#{start_date},
+		#{end_date},
+		#{reg_date}
+		)
+	</insert>
+
+	<update id="update" parameterType="NoticeDto">
+		update notice set
+		notice_title=#{notice_title},
+		notice_img=#{notice_img},
+		start_date=#{start_date},
+		end_date=#{end_date},
+		reg_date=#{reg_date}
+		where
+		notice_id= #{notice_id}
+	</update>
+
+
+	<select id="selectOne" parameterType="int"
+		resultType="NoticeDto">
+		select notice_id, notice_title, notice_img, start_date, end_date,
+		reg_date
+		from notice
+		where
+		notice_id = #{notice_id}
+	</select>
+
+	<select id="selectList" resultType="NoticeDto">
+		select notice_id, notice_title, notice_img, start_date, end_date,
+		reg_date
+		from notice
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from notice where notice_id = #{notice_id}
+	</delete>
+
+
+</mapper>

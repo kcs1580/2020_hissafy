@@ -27,9 +27,9 @@ public class EarlyLeaveServiceImpl implements IEarlyLeaveService {
 	}
 
 	@Override
-	public EarlyLeaveDto earlyInfo(String student_id) {
+	public EarlyLeaveDto earlyInfo(EarlyLeaveDto earlyleave) {
 		// TODO Auto-generated method stub
-		return repo.earlyInfo(student_id);
+		return repo.earlyInfo(earlyleave);
 	}
 
 	@Override
@@ -42,6 +42,11 @@ public class EarlyLeaveServiceImpl implements IEarlyLeaveService {
 	public int earlyDelete(String student_id) {
 		// TODO Auto-generated method stub
 		return repo.earlyDelete(student_id);
+	}
+
+	@Override
+	public List<EarlyLeaveDto> earlyDateList(String date) {
+		return repo.earlyDateList(date);
 	}
 
 }
