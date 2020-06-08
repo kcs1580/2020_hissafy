@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     ...mapActions(["changeFrontState"]),
-    setTime : function() {
+    /*setTime : function() {
       console.log(this.times)
       var self = this
       let moment = require('moment'); 
@@ -87,7 +87,7 @@ export default {
           self.changeFrontState(params)
         }
       }, 1000);
-    }
+    }*/
   }
 };
 </script>

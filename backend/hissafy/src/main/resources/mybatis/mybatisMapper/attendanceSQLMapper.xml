@@ -34,6 +34,8 @@
 	<select id="selectList" resultType="AttendanceDto">
 		select student_id, attendance_date, attendance_time, leaving_time, attendance_state
 		from Attendance
+	</select>	
+	
 	</select>
 		<select id="selectDateList" parameterType="string" resultType="AttendanceDto">
 		select student_id, attendance_date, attendance_time, leaving_time, attendance_state
