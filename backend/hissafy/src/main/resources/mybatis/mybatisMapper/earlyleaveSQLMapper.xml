@@ -5,9 +5,10 @@
 <mapper namespace="hissafy.earlyleave">
 	<insert id="insert" parameterType="EarlyLeaveDto">
 		insert into earlyleave
-		(student_id, division, sort, reason, leaving_time, approval_state)
+		(student_id, earlyleave_date, division, sort, reason, leaving_time, approval_state)
 		values(
 		#{student_id},
+		${earlyleave_date},
 		#{division},
 		#{sort},
 		#{reason},
@@ -25,25 +26,31 @@
 		leaving_time=#{leaving_time},
 		approval_state=#{approval_state}
 		where
-		student_id= #{student_id}
+		student_id= #{student_id} and earlyleave_date=#{earlyleave_date}
 	</update>
 
 
-	<select id="selectOne" parameterType="string"
+	<select id="selectOne" parameterType="EarlyLeaveDto"
 		resultType="EarlyLeaveDto">
 		select student_id, division, sort, reason, leaving_time,
 		approval_state
 		from earlyleave
 		where
-		student_id = #{student_id}
+		student_id = #{student_id} and earlyleave_date=#{earlyleave_date}
 	</select>
-
+	
 	<select id="selectList" resultType="EarlyLeaveDto">
 		select student_id, division,
 		sort, reason, leaving_time, approval_state
 		from earlyleave
 	</select>
-
+	<select id="selectDateList" parameterType="string" resultType="EarlyLeaveDto" >
+		select student_id, division,
+		sort, reason, leaving_time, approval_state
+		from earlyleave
+		where earlyleave_date=#{earlyleave_date}
+	</select>
+	
 	<delete id="delte" parameterType="string">
 		delete from earlyleave where student_id = #{student_id}
 	</delete>
