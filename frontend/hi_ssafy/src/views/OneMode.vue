@@ -211,28 +211,7 @@ export default {
       this.earlyleave.reason = "";
       this.earlyleave.leaving_time = null;
     },
-    updateIn() {
-      if (true) {
-        this.student.attendance_state = "입실완료";
-        this.student.attendance_time = new Date();
-        this.currentStudentList.unshift(this.student);
-        console.log(this.student.name + " " + this.student.attendance_state);
-        let fdata = new FormData();
-        fdata.append("student_id", this.student.student_id);
-        fdata.append("attendance_date", this.student.attendance_date);
-        fdata.append("attendance_time", this.student.attendance_time);
-        fdata.append("leaving_time", this.student.leaving_time);
-        fdata.append("attendance_state", this.student.attendance_state);
-        http
-          .put("/student/updateAttendance", fdata)
-          .then(response => {
-            this.alertIn();
-            console.log(response.data.message);
-          })
-          .catch(err => console.log(err))
-          .finally();
-      }
-    },
+    updateIn() {},
     updateOut() {},
     alertIn() {
       this.$alert("입실이 완료 되었습니다.", "Success", "success").then(() =>
