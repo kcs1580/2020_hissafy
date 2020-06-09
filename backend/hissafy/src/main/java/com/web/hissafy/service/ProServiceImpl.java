@@ -3,8 +3,8 @@ package com.web.hissafy.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.web.hissafy.dto.ProDto;
 import com.web.hissafy.repopsitory.IProRepository;
-import com.web.hisssafy.dto.ProDto;
 
 @Service
 public class ProServiceImpl implements IProService {

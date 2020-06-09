@@ -1,6 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import StudentManagement from "../views/StudentManagement"
+import StudentEdit from "../views/StudentEdit"
+import AttendanceCheck from "../views/AttendanceCheck"
+import EarlyLeaveCheck from "../views/EarlyLeaveCheck"
+import NoticeList from "../views/NoticeList"
+import NoticeInfo from "../views/NoticeInfo"
+import AddNotice from "../views/AddNotice"
+import TimeConfig from "../views/TimeConfig"
 
+import Home from"../views/Home"
 Vue.use(VueRouter);
 
 // const rejectAuthUser =(to,from,next)=>{
@@ -14,15 +23,51 @@ Vue.use(VueRouter);
 
 const routes = [
 
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
+  {
+    path: "/",
+    name: "Home",
+    component: Home
+  },
+  {
+    path: "/studentManagement",
+    name: "StudentManagement",
+    component: StudentManagement
+  },
+  {
+    path:"/attendanceCheck",
+    name:"AttendanceCheck",
+    component:AttendanceCheck
+  },
+  {
+    path:"/earlyLeaveCheck",
+    name:" EarlyLeaveCheck",
+    component: EarlyLeaveCheck
+  },
+  {
+    path:"/noticeList",
+    name:"NoticeList",
+    component:NoticeList
+  },
+  {
+    path:"/noticeInfo/:notice_id",
+    name:"NoticeInfo",
+    component:NoticeInfo
+  },
+  {
+    path:"/addNotice",
+    name:"AddNotice",
+    component:AddNotice
+  },
+  {
+    path:"/timeConfig",
+    name : TimeConfig,
+    component :TimeConfig
+  },
+  {
+    path:"/updateStudent",
+    name :StudentEdit,
+    component:StudentEdit
+  }
 ];
 
 const router = new VueRouter({

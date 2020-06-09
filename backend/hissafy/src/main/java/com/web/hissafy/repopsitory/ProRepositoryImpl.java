@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.web.hisssafy.dto.ProDto;
+import com.web.hissafy.dto.ProDto;
 
 @Repository
 public class ProRepositoryImpl implements IProRepository {

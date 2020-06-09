@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hissafy.student">
+	<insert id="insert" parameterType="StudentDto">
+		insert into Student
+		(student_id, area, group_num, class_num, name, state, face_id)
+		values(
+			#{student_id},
+			#{area},
+			#{group_num},
+			#{class_num},
+			#{name},
+			#{state},
+			#{face_id}
+		)
+	</insert>
+	
+	<update id="update" parameterType="StudentDto">
+		update Student set
+			area=#{area},
+			group_num=#{group_num},
+			class_num=#{class_num},
+			name=#{name},
+			state=#{state},
+			face_id=#{face_id}
+		where
+			student_id= #{student_id}
+	</update>
+	
+	
+	<select id="selectOne" parameterType="string" resultType="StudentDto">
+		select student_id, area, group_num, class_num, name, state, face_id
+		from Student
+		where 
+			student_id = #{student_id}
+	</select>
+	<select id="selectList" resultType="StudentDto">
+		select student_id, area, group_num, class_num, name, state, face_id
+		from Student
+	</select>
+	
+	<select id="selectDuringList" resultType="DuringStudentDto">
+		select a.student_id, a.area, a.group_num, a.class_num, a.name, a.state, a.face_id, b.attendance_date, b.attendance_time, b.leaving_time, b.attendance_state
+		from Student as a left join Attendance as b on a.student_id = b.student_id
+		where state = "입과"
+		order by student_id;
+	</select>
+	
+</mapper>

@@ -1,6 +1,6 @@
 package com.web.hissafy.service;
 
-import com.web.hisssafy.dto.ProDto;
+import com.web.hissafy.dto.ProDto;
 
 public interface JwtService {
 
@@ -16,10 +16,10 @@ public interface JwtService {
 	// 토큰으로부터 user_id 추출
 	String getUserId(String jwt);
 
-	// 토큰으로부터 user_name추출
-	String getUserName(String jwt);
-
-	// 토큰으로부터 user_name추출
-	String getUserLocation(String jwt);
+//	// 토큰으로부터 user_name추출
+//	String getUserName(String jwt);
+//
+//	// 토큰으로부터 user_name추출
+//	String getUserLocation(String jwt);
 
 }

@@ -1,24 +1,28 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import InAndOut from "../views/InAndOut.vue";
+import Notice from "../views/Notice.vue";
+import OneMode from "../views/OneMode.vue";
+import register from "../views/register.vue"
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "InAndOut",
-    component: InAndOut
+    name: "Notice",
+    component: Notice
+  },
+  {
+    path: "/onemode",
+    name: "OneMode",
+    component: OneMode
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: register
   }
-  // {
-  //   path: "/about",
-  //   name: "About",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
-  // }
+
 ];
 
 const router = new VueRouter({

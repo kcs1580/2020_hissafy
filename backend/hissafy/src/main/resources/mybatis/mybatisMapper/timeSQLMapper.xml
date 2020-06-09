@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hissafy.time">
+	<insert id="insert" parameterType="TimeDto">
+		insert into timeConfig
+		(attendance_start_h, attendance_start_m, attendance_end_h, attendance_end_m,  leaving_start_h, leaving_start_m, leaving_end_h, leaving_end_m)
+		values(
+			#{attendance_start_h},
+			#{attendance_start_m},
+			#{attendance_end_h},
+			#{attendance_end_m},
+			#{leaving_start_h},
+			#{leaving_start_m},
+			#{leaving_end_h},
+			#{leaving_end_m}
+		)
+	</insert>
+	<update id="update" parameterType="TimeDto">
+		update TimeConfig set
+			attendance_start_h=#{attendance_start_h},
+			attendance_start_m=#{attendance_start_m},
+			attendance_end_h=#{attendance_end_h},
+			attendance_end_m=#{attendance_end_m},
+			leaving_start_h=#{leaving_start_h},
+			leaving_start_m=#{leaving_start_m},
+			leaving_end_h=#{leaving_end_h},
+			leaving_end_m=#{leaving_end_m}
+		where
+			time_id= #{time_id}
+	</update>
+	<select id="selectOne" parameterType="int" resultType="TimeDto">
+		select attendance_start_h, attendance_start_m, attendance_end_h, attendance_end_m, leaving_start_h, leaving_start_m, leaving_end_h,leaving_end_m
+		from TimeConfig
+		where 
+			time_id = #{time_id}
+	</select>
+	<select id="selectList" resultType="TimeDto">
+		select attendance_start_h, attendance_start_m, attendance_end_h, attendance_end_m, leaving_start_h, leaving_start_m, leaving_end_h,leaving_end_m
+		from TimeConfig
+	</select>
+</mapper>
